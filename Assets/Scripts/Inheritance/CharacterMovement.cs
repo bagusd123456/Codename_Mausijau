@@ -1,22 +1,18 @@
-#define Movement_Old
-
 using Assets.Scripts;
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
-
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.AI;
 
-
-public class PlayerMovementController : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
+    private Transform currentTargetPosition;
     private Transform lastTargetPosition;
+    public float minimumDistance = .5f;
 
     private AnimationController animationController;
-    private InputControls _inputMapping;
 
-    private Camera _camera;
     private NavMeshAgent _agent;
 
     private Vector3 _moveTarget = Vector3.zero;
@@ -28,7 +24,7 @@ public class PlayerMovementController : MonoBehaviour
     public float _walkSpeed = 2.5f;
     public float _runSpeed = 4f;
 
-    private MovementStates _currentMovement;
+    public MovementStates _currentMovement;
     public MovementStates CurrentMovement
     {
         get => _currentMovement;
@@ -53,16 +49,12 @@ public class PlayerMovementController : MonoBehaviour
     /// </summary>
     public bool IsNavigating => _agent.pathPending || _agent.remainingDistance > .25f;
 
-    private void Awake() => _inputMapping = new InputControls();
-
     void Start()
     {
+        //UnitCondition.OnUnitDeath += ()=> _agent.isStopped = true;
         animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
-        _inputMapping.Default.Walk.performed += Walk;
-        _inputMapping.Default.Run.performed += Run;
 
-        _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -88,10 +80,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnEnable() => _inputMapping.Enable();
-
-    private void OnDisable() => _inputMapping.Disable();
-
     /// <summary>
     /// Called when the player does a double left mouse button click
     /// </summary>
@@ -106,36 +94,7 @@ public class PlayerMovementController : MonoBehaviour
     /// </summary>
     private void Walk(CallbackContext context)
     {
-#if Movement_Old
-        Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 50f))
-        {
-            if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, .25f, 1 << 0))
-            {
-                //Stop navigating
-                StopNavigation();
-
-                _moveTarget = navPos.position;
-
-                
-
-                //Calculate rotation direction
-                _direction = (_moveTarget.WithNewY(transform.position.y) - transform.position).normalized;
-                _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
-                _needToRotate = true;
-
-                //Set the speed and ready the animation
-                CurrentMovement = MovementStates.Walk;
-
-                if (IsNavigating && Vector3.Dot(_direction, transform.forward) >= 0.25f)
-                {
-                    _agent.SetDestination(_moveTarget);
-                }
-            }
-        }
-#else
-        if (ObjectSelector.currentTargetPosition == lastTargetPosition)
+        if (currentTargetPosition == lastTargetPosition)
         {
             return;
         }
@@ -147,10 +106,6 @@ public class PlayerMovementController : MonoBehaviour
 
             _moveTarget = navPos.position;
 
-            //Show the walk decal
-            WalkDecal.transform.position = _moveTarget.WithNewY(0.1f);
-            WalkDecal.Play();
-
             //Calculate rotation direction
             _direction = (_moveTarget.WithNewY(transform.position.y) - transform.position).normalized;
             _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
@@ -158,14 +113,13 @@ public class PlayerMovementController : MonoBehaviour
 
             //Set the speed and ready the animation
             CurrentMovement = MovementStates.Walk;
-
-            if (IsNavigating && Vector3.Dot(_direction, transform.forward) >= 0.25f)
-            {
-                _agent.SetDestination(_moveTarget);
-            }
         }
+    }
 
-#endif
+    public void MoveTo(Vector3 position)
+    {
+        if(Vector3.Distance(transform.position, position) > minimumDistance)
+            _agent.SetDestination(position);
     }
 
     /// <summary>
@@ -176,5 +130,16 @@ public class PlayerMovementController : MonoBehaviour
         _agent.SetDestination(transform.position);
         CurrentMovement = MovementStates.None;
         animationController.CurrentState = CurrentMovement;
+    }
+
+    public static Vector3 GetTargetPositon(Transform center, float radius, float angle = 1f)
+    {
+        Vector3 pos = new Vector3();
+
+        pos.x = center.position.x + (radius * Mathf.Cos(angle / (180f / Mathf.PI)));
+        pos.y = center.position.y;
+        pos.z = center.position.z + (radius * Mathf.Sin(angle / (180f / Mathf.PI)));
+
+        return pos;
     }
 }

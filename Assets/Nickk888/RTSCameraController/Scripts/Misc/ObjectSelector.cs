@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ObjectSelector : MonoBehaviour
 {
+    public ParticleSystem WalkDecal;
+
     Camera mainCam;
     public RTSCameraTargetController cameraTargetController;
+
+    public PointController currentUnit;
     public Transform currentSelected;
 
+    public static Transform currentTargetPosition;
     void Start()
     {
         mainCam = Camera.main;
@@ -26,7 +31,7 @@ public class ObjectSelector : MonoBehaviour
                     currentSelected = null;
                 }
             }
-            if (hit.transform.tag == "Cubes")
+            if (hit.transform.tag == "Platform")
             {
                 if (currentSelected != hit.transform)
                 {
@@ -35,19 +40,24 @@ public class ObjectSelector : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
-                    {
-                        cameraTargetController.LockOnTarget(hit.transform.position, 10);
-                    }
-                    else
-                    {
-                        cameraTargetController.LockOnTarget(hit.transform, 20, true);
-                    }
+                    //if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
+                    //{
+                    //    cameraTargetController.LockOnTarget(hit.transform.position, 10);
+                    //}
+                    //else
+                    //{
+                    //    cameraTargetController.LockOnTarget(hit.transform, 20, true);
+                    //}
+                    currentTargetPosition = hit.transform;
+                    currentUnit.MoveParentTo(hit.transform.position);
+
+                    //Show the walk decal
+                    //WalkDecal.transform.position = _moveTarget.WithNewY(0.1f);
+                    WalkDecal.transform.position = currentTargetPosition.position + Vector3.up * 0.05f;
+                    WalkDecal.Play();
                 }
             }
         }
 
     }
-
-
 }

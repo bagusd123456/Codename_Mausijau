@@ -47,11 +47,17 @@ public class PointController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                transform.position = hit.point;
-                Formation.EvaluatePoints();
+                //MoveParentTo(hit.point);
             }
             
         }
+    }
+
+    [Tooltip("Move this Unit Group to Target Position in Vector3")]
+    public void MoveParentTo(Vector3 targetPos)
+    {
+        transform.position = targetPos;
+        Formation.EvaluatePoints();
     }
 
     private void SetFormation()
@@ -60,7 +66,8 @@ public class PointController : MonoBehaviour
 
         for (var i = 0; i < _spawnedUnits.Count; i++)
         {
-            _spawnedUnits[i].SetDestination(transform.position + _points[i]);
+            if (_spawnedUnits[i].isActiveAndEnabled)
+                _spawnedUnits[i].SetDestination(transform.position + _points[i]);
             //_spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }

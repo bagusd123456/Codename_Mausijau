@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class AI_Detection : MonoBehaviour
 {
-    public UnitCondition currentUnit;
+    private CharacterMovement characterMovement;
+    private UnitCondition currentUnit;
     public float radius = 10f;
     public LayerMask layer;
+    public LayerMask[] layerPriority;
     public bool targetInRange;
 
     public Collider[] detectedUnits;
@@ -18,6 +21,7 @@ public class AI_Detection : MonoBehaviour
     public void Awake()
     {
         currentUnit = GetComponent<UnitCondition>();
+        characterMovement = GetComponent<CharacterMovement>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,10 @@ public class AI_Detection : MonoBehaviour
             closestTarget = null;
         else
         {
+            if (closestTarget == null) return;
+
+            characterMovement._currentMovement = MovementStates.Walk;
+            characterMovement.MoveTo(CharacterMovement.GetTargetPositon(closestTarget.transform, 1f));
             currentUnit.Attack(closestTarget, currentUnit.unitData.baseDamage);
         }
     }
@@ -57,6 +65,11 @@ public class AI_Detection : MonoBehaviour
             Gizmos.color = Color.red;
         else
             Gizmos.color = Color.white;
+
+        if (closestTarget != null)
+        {
+            Gizmos.DrawLine(transform.position, closestTarget.transform.position);
+        }
 
         Gizmos.DrawWireSphere(transform.position, radius);
     }

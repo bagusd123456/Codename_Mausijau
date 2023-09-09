@@ -56,6 +56,7 @@ public class UnitCondition : MonoBehaviour
             isDead = true;
 
             OnUnitDeath?.Invoke();
+            gameObject.SetActive(false);
         }
     }
 
