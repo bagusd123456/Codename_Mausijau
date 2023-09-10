@@ -46,11 +46,11 @@ namespace Assets.Scripts
             }
         }
 
-        [SerializeField]
         private Animator _animatorController;
 
         private void Awake()
         {
+            _animatorController = GetComponentInChildren<Animator>();
             /*
             if (Instance == null)
             {

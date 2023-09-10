@@ -47,6 +47,15 @@ public class PointController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                for (var i = 0; i < _spawnedUnits.Count; i++)
+                {
+                    var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
+
+                    ai_Detection.isControlled = true;
+                    ai_Detection.controlledDuration = 1f;
+                    //_spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
+                }
+                
                 //MoveParentTo(hit.point);
             }
             
@@ -66,8 +75,11 @@ public class PointController : MonoBehaviour
 
         for (var i = 0; i < _spawnedUnits.Count; i++)
         {
-            if (_spawnedUnits[i].isActiveAndEnabled)
+            var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
+            if (_spawnedUnits[i].isActiveAndEnabled && ai_Detection.currentState != AI_Detection.DetectionState.Idle)
+            {
                 _spawnedUnits[i].SetDestination(transform.position + _points[i]);
+            }
             //_spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }

@@ -66,7 +66,7 @@ public class UnitCondition : MonoBehaviour
         {
             timeBeforeAttack = unitData.baseAttackSpeed;
             targetUnit.TakeDamage(damageAmount);
-            Debug.Log($"{targetUnit.name} Taken {damageAmount} Damage");
+            //Debug.Log($"{targetUnit.name} Taken {damageAmount} Damage");
         }
     }
 }

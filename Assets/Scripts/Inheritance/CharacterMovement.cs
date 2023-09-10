@@ -9,7 +9,6 @@ public class CharacterMovement : MonoBehaviour
 {
     private Transform currentTargetPosition;
     private Transform lastTargetPosition;
-    public float minimumDistance = .5f;
 
     private AnimationController animationController;
 
@@ -18,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 _moveTarget = Vector3.zero;
     private Quaternion _lookRotation = Quaternion.identity;
     private Vector3 _direction = Vector3.zero;
-    private bool _needToRotate = false;
+    public bool _needToRotate = false;
 
     private float _rotateSpeed = 10f;
     public float _walkSpeed = 2.5f;
@@ -68,6 +67,7 @@ public class CharacterMovement : MonoBehaviour
         //Navigation is likely starting
         else if (_needToRotate)
         {
+            _agent.enabled = true;
             transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _rotateSpeed);
 
             if (Vector3.Dot(_direction, transform.forward) >= .99f)
@@ -118,8 +118,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void MoveTo(Vector3 position)
     {
-        if(Vector3.Distance(transform.position, position) > minimumDistance)
-            _agent.SetDestination(position);
+        _agent.SetDestination(position);
     }
 
     /// <summary>
@@ -127,18 +126,28 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void StopNavigation()
     {
+        //_agent.enabled = false;
         _agent.SetDestination(transform.position);
         CurrentMovement = MovementStates.None;
         animationController.CurrentState = CurrentMovement;
     }
 
-    public static Vector3 GetTargetPositon(Transform center, float radius, float angle = 1f)
+    public void SetAnimation(MovementStates moveState)
+    {
+        animationController.CurrentState = moveState;
+    }
+
+    public static Vector3 GetTargetPositon(Transform center, float radius = 2f, float angle = 1f)
     {
         Vector3 pos = new Vector3();
 
-        pos.x = center.position.x + (radius * Mathf.Cos(angle / (180f / Mathf.PI)));
+        //pos.x = center.position.x + (radius * Mathf.Cos(angle / (180f / Mathf.PI)));
+        //pos.y = center.position.y;
+        //pos.z = center.position.z + (radius * Mathf.Sin(angle / (180f / Mathf.PI)));
+
+        pos.x = center.position.x + Mathf.Cos(angle) * radius;
         pos.y = center.position.y;
-        pos.z = center.position.z + (radius * Mathf.Sin(angle / (180f / Mathf.PI)));
+        pos.z = center.position.z + Mathf.Sin(angle) * radius;
 
         return pos;
     }
