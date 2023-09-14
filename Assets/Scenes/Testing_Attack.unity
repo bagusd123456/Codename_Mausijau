@@ -916,6 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -927,9 +928,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &95325619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,7 +949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 1940321410}
 --- !u!114 &95325620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,12 +996,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 95325615}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1029,7 +1035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &95419893
@@ -1200,6 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -1211,9 +1219,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &108737887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +1240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 1267202815}
 --- !u!114 &108737888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,12 +1287,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 108737883}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1313,7 +1326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &112326864
@@ -1985,7 +1999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &217267916
@@ -2619,7 +2634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &285818149
@@ -2976,6 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -2987,9 +3004,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &316524046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,7 +3025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 287094046}
 --- !u!114 &316524047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3050,12 +3072,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 316524042}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -3089,7 +3111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &325556993
@@ -9723,7 +9746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &620558326
@@ -10384,6 +10408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -10395,9 +10420,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &707549437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10410,7 +10441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 1069962458}
 --- !u!114 &707549438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10458,12 +10488,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 707549433}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -10497,7 +10527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &718248426
@@ -10636,6 +10667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -10647,9 +10679,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &719499858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10662,7 +10700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 820647839}
 --- !u!114 &719499859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10710,12 +10747,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 719499854}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -10749,7 +10786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &727568134
@@ -11703,11 +11741,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.142136
+      value: 5.656854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.142136
+      value: -5.6568546
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11723,15 +11761,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138043651669, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_CameraDistance
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.142136
+      value: 5.656854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.142136
+      value: -5.6568546
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265802, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_Name
@@ -12249,7 +12287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &930739068
@@ -13934,7 +13973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1158017995
@@ -14407,6 +14447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -14418,9 +14459,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &1214211970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14433,7 +14480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 258975192}
 --- !u!114 &1214211971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14481,12 +14527,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1214211966}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -14520,7 +14566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1221950373
@@ -14863,7 +14910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1267202813
@@ -15497,37 +15545,145 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03765663
       objectReference: {fileID: 0}
+    - target: {fileID: 4539904187246413182, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187246413182, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187246413446, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 4539904187246413446, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187523167607, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187523167607, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187523167887, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4539904187523167887, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4539904187785958701, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187785958701, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187785959125, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187785959125, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187826342375, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187826342375, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187826342431, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4539904187826342431, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4539904187830352094, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187830352094, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904187830352678, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 4539904187830352678, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188072058012, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188072058012, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188072058724, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4539904188072058724, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4539904188093010132, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188093010132, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188093010732, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 4539904188093010732, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4539904188248534043, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188248534043, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188248535011, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4539904188248535011, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188861760979, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Radius
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188861760979, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539904188861761067, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: m_Name
+      value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4539904188861761067, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_Layer
@@ -15566,8 +15722,16 @@ PrefabInstance:
       value: -0.045181572
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821520369106, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
-      propertyPath: radius
-      value: 3.36
+      propertyPath: angle
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821520369106, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821520369106, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821520369106, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15579,11 +15743,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821520369106, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15591,11 +15767,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821532936586, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15607,11 +15795,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821662818676, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15619,11 +15819,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821683120146, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15635,11 +15847,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821747738942, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15651,11 +15875,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877821749105613, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15667,11 +15903,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822020300915, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15683,11 +15931,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822280450152, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: angle
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: radius
-      value: 3.36
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: delayTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
+      propertyPath: currentState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: layer.m_Bits
@@ -15695,7 +15955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280877822327038430, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: minimumDistance
-      value: 10
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 7280877823408497136, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
       propertyPath: m_RootOrder
@@ -16866,20 +17126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
---- !u!114 &1397385554 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7280877821532936591, guid: fc441ec8c0c2e5c4fa575def10776f91, type: 3}
-  m_PrefabInstance: {fileID: 1286552815}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397385542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ebccaac022f2040b6574b71b861a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1398406677
 GameObject:
   m_ObjectHideFlags: 0
@@ -19297,6 +19547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -19306,9 +19557,15 @@ MonoBehaviour:
   targetInRange: 0
   detectedUnits: []
   sortedUnits: []
-  closestTarget: {fileID: 1397385554}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &1728629424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19321,7 +19578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 766713319}
 --- !u!114 &1728629425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19369,12 +19625,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1728629420}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -19408,7 +19664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1731263541
@@ -19888,6 +20145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -19899,9 +20157,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &1798949203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19914,7 +20178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 271693458}
 --- !u!114 &1798949204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19962,12 +20225,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1798949199}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -20001,7 +20264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1801179004
@@ -21031,6 +21295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dbefc4446f9dc4ca77aa5273fb55c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isControlled: 0
   currentState: 0
   radius: 10
   layer:
@@ -21042,9 +21307,15 @@ MonoBehaviour:
   - {fileID: 1350085604}
   sortedUnits:
   - {fileID: 1350085604}
-  closestTarget: {fileID: 1350085608}
-  minimumDistance: 1.38
+  closestTarget: {fileID: 0}
+  minimumDistance: 1.65
+  targetPosition: {x: 0, y: 0, z: 0}
+  controlledDuration: 0
+  delayTime: 3
+  angle: 5.92
+  elapsedTime: 0
   currentDistance: 0
+  lastDistance: 0
 --- !u!114 &1883335406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21057,7 +21328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f1604ade696d24587532dda6c9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animatorController: {fileID: 2006616343}
 --- !u!114 &1883335407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21105,12 +21375,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1883335402}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.15
+  m_Radius: 0.43
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -21144,7 +21414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1885494108
@@ -21293,7 +21564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &1898054167 stripped
@@ -22897,7 +23169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
+  _needToRotate: 0
+  _walkSpeed: 1.4
   _runSpeed: 4
   _currentMovement: 0
 --- !u!1 &2087699478

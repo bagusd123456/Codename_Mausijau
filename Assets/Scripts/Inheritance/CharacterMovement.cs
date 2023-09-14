@@ -124,7 +124,7 @@ public class CharacterMovement : MonoBehaviour
     /// <summary>
     /// Stops the player from moving.
     /// </summary>
-    private void StopNavigation()
+    public void StopNavigation()
     {
         //_agent.enabled = false;
         _agent.SetDestination(transform.position);
