@@ -13,7 +13,8 @@ namespace Assets.Scripts
     {
         None,
         Walk,
-        Run
+        Run,
+        Attack
     }
 
     public class AnimationController : MonoBehaviour
@@ -40,6 +41,11 @@ namespace Assets.Scripts
                         _animatorController.SetBool("Run", true);
                         _animatorController.SetBool("Walk", false);
                         break;
+                    case MovementStates.Attack:
+                        _animatorController.SetTrigger("Attack");
+                        _animatorController.SetBool("Walk", false);
+                        _animatorController.SetBool("Run", false);
+                        break;
                 }
 
                 _currentState = value;
@@ -51,19 +57,6 @@ namespace Assets.Scripts
         private void Awake()
         {
             _animatorController = GetComponentInChildren<Animator>();
-            /*
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(this);
-            }
-            else if (Instance != this)
-            {
-                Debug.LogError($"Two instances of AnimationController found. Destroying object: {this.name}");
-                Destroy(this);
-            }
-            */
-            
         }
 
         public void Update()

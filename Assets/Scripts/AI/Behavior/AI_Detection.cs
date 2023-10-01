@@ -67,52 +67,6 @@ public class AI_Detection : MonoBehaviour
 
         CheckSurrounding();
 
-        //if (!targetInRange)
-        //    closestTarget = null;
-        //else
-        //{
-        //    if (closestTarget == null) return;
-        //    currentDistance = Vector3.Distance(transform.position, closestTarget.transform.position);
-
-        //    if (currentDistance > minimumDistance)
-        //    {
-        //        if(currentState != DetectionState.Moving)
-        //        {
-        //            currentState = DetectionState.Moving;
-
-        //            float angle = Random.Range(0, 360);
-        //            targetPosition = CharacterMovement.GetTargetPositon(closestTarget.transform, minimumDistance, angle);
-        //            elapsedTime = 0;
-        //        }
-        //        else
-        //        {
-        //            if (currentState == DetectionState.Moving)
-        //            {
-        //                elapsedTime += Time.deltaTime;
-        //                if (elapsedTime > 1f)
-        //                {
-        //                    if (currentDistance - minimumDistance < 2f)
-        //                    {
-        //                        currentState = DetectionState.Attacking;
-        //                    }
-        //                    else
-        //                    {
-        //                        float angle = Random.Range(0, 360);
-        //                        targetPosition = CharacterMovement.GetTargetPositon(closestTarget.transform, minimumDistance, angle);
-        //                        elapsedTime = 0;
-        //                    }
-        //                }
-        //            }
-        //        }
-                
-        //    }
-        //    else
-        //    {
-        //        characterMovement._currentMovement = MovementStates.None;
-        //        currentState = DetectionState.Attacking;
-        //    }
-        //}
-
         if(currentState == DetectionState.Idle)
         {
             characterMovement.SetAnimation(MovementStates.None);
@@ -122,7 +76,6 @@ public class AI_Detection : MonoBehaviour
         {
             characterMovement.StopNavigation();
             characterMovement.SetAnimation(MovementStates.None);
-
             if (currentUnit != null && closestTarget != null)
             {
                 currentDistance = Vector3.Distance(transform.position, closestTarget.transform.position);
@@ -130,8 +83,11 @@ public class AI_Detection : MonoBehaviour
                 {
                     if (closestTarget.isActiveAndEnabled)
                     {
-                        closestTarget.GetComponent<AI_Detection>().currentState = DetectionState.FindEnemies;
+                        characterMovement.LookToTarget(closestTarget.transform.position);
+
+                        closestTarget.GetComponent<AI_Detection>().ChangeStateToAttack(currentUnit);
                         currentUnit.Attack(closestTarget, currentUnit.unitData.baseDamage);
+                        characterMovement.SetAnimation(MovementStates.Attack);
                     }
                     else
                         closestTarget = null;
@@ -140,8 +96,6 @@ public class AI_Detection : MonoBehaviour
                 {
                     currentState = DetectionState.FindEnemies;
                 }
-
-                
             }
             else
                 currentState = DetectionState.FindEnemies;
@@ -150,10 +104,12 @@ public class AI_Detection : MonoBehaviour
         else if (currentState == DetectionState.Moving)
         {
             characterMovement.SetAnimation(MovementStates.Run);
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.8f)
+            float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+            if (distanceToTarget < 0.8f)
             {
                 characterMovement.SetAnimation(MovementStates.None);
+                if (closestTarget != null)
+                    currentState = DetectionState.Patrol;
             }
         }
 
@@ -166,7 +122,8 @@ public class AI_Detection : MonoBehaviour
         else if (currentState == DetectionState.FindEnemies)
         {
             if (closestTarget == null) return;
-
+            if (!closestTarget.isActiveAndEnabled)
+                currentState = DetectionState.Patrol;
             currentDistance = Vector3.Distance(transform.position, closestTarget.transform.position);
 
             if (currentDistance > minimumDistance)
@@ -174,7 +131,6 @@ public class AI_Detection : MonoBehaviour
                 if (targetPosition == Vector3.zero)
                 {
                     angle = Random.Range(0, 360);
-                    //targetPosition = CharacterMovement.GetTargetPositon(closestTarget.transform, minimumDistance, angle);
                     lastDistance = currentDistance;
                 }
 
@@ -201,6 +157,7 @@ public class AI_Detection : MonoBehaviour
                     }
                 }
             }
+
             else
             {
                 characterMovement.SetAnimation(MovementStates.None);
@@ -212,25 +169,39 @@ public class AI_Detection : MonoBehaviour
                 currentState = DetectionState.Attacking;
             }
         }
+
+        else if (currentState == DetectionState.Patrol)
+        {
+            if (closestTarget != null)
+                currentState = DetectionState.FindEnemies;
+        }
+
         controlledDuration = delayTime;
     }
 
     public void CheckSurrounding()
     {
-        detectedUnits = Physics.OverlapSphere(transform.position, radius, layer);
+        Collider[] detectedColliders = Physics.OverlapSphere(transform.position, radius, layer);
+        detectedUnits = detectedColliders.Where(x=> !x.GetComponent<UnitCondition>().isDead).ToArray();
         sortedUnits = detectedUnits.ToList();
         sortedUnits.Sort((x, y) => Vector3.Distance(transform.position, x.transform.position).CompareTo(Vector3.Distance(transform.position, y.transform.position)));
 
         if (detectedUnits.Length > 0 && closestTarget == null)
         {
-            targetInRange = true;
-            closestTarget = sortedUnits[0].GetComponent<UnitCondition>();
+            if (Vector3.Distance(transform.position, sortedUnits[0].transform.position) < radius)
+            {
+                targetInRange = true;
+                closestTarget = sortedUnits[0].GetComponent<UnitCondition>();
+            }
+            else
+            {
+                targetInRange = false;
+            }
         }
         else
         {
-            targetInRange = false;
+
         }
-        
     }
 
     public void MoveToTarget()
@@ -257,13 +228,11 @@ public class AI_Detection : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    //public void LookToTarget()
-    //{
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _rotateSpeed);
-
-    //    _direction = (_moveTarget.WithNewY(transform.position.y) - transform.position).normalized;
-    //    _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
-    //}
+    public void ChangeStateToAttack(UnitCondition unitTarget)
+    {
+        closestTarget = unitTarget;
+        currentState = DetectionState.Attacking;
+    }
 
     public void OnDrawGizmosSelected()
     {
@@ -281,5 +250,8 @@ public class AI_Detection : MonoBehaviour
         if(closestTarget != null)
             Gizmos.DrawWireSphere(targetPosition, .5f);
         Gizmos.DrawWireSphere(transform.position, minimumDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, radius);
+
     }
 }

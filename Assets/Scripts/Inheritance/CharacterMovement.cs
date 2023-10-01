@@ -137,6 +137,13 @@ public class CharacterMovement : MonoBehaviour
         animationController.CurrentState = moveState;
     }
 
+    public void LookToTarget(Vector3 targetPos)
+    {
+        _direction = (targetPos.WithNewY(transform.position.y) - transform.position).normalized;
+        _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _rotateSpeed);
+    }
+
     public static Vector3 GetTargetPositon(Transform center, float radius = 2f, float angle = 1f)
     {
         Vector3 pos = new Vector3();
