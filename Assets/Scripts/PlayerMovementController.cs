@@ -28,7 +28,7 @@ public class PlayerMovementController : MonoBehaviour
     public float _walkSpeed = 2.5f;
     public float _runSpeed = 4f;
 
-    public SpriteRenderer characterSprite;
+    private CharacterMovement characterMovement;
 
     private MovementStates _currentMovement;
     public MovementStates CurrentMovement
@@ -59,9 +59,9 @@ public class PlayerMovementController : MonoBehaviour
 
     void Start()
     {
-        if (characterSprite == null)
+        if (characterMovement == null)
         {
-            characterSprite = GetComponentInChildren<SpriteRenderer>();
+            characterMovement = GetComponent<CharacterMovement>();
         }
         animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
@@ -92,6 +92,8 @@ public class PlayerMovementController : MonoBehaviour
                 _needToRotate = false;
             }
         }
+
+        characterMovement.facingDirection = _direction;
     }
 
     private void OnEnable() => _inputMapping.Enable();
@@ -147,14 +149,6 @@ public class PlayerMovementController : MonoBehaviour
                 _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
                 _needToRotate = true;
 
-                if (_direction.x > 0)
-                {
-                    characterSprite.flipX = false;
-                }
-                else
-                {
-                    characterSprite.flipX = true;
-                }
                 //Set the speed and ready the animation
                 //CurrentMovement = MovementStates.Walk;
 

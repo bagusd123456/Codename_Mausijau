@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.Animations;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
@@ -53,20 +52,11 @@ namespace Assets.Scripts
         }
 
         public Animator _animatorController;
+        public SpriteRenderer _spriteRenderer;
 
-        private void Awake()
+        public void FlipSprite(bool flip)
         {
-            
-        }
-
-        public void Update()
-        {
-            //OffsetAnimation(_animatorController.GetNextAnimatorStateInfo(0));
-            //var list = _animatorController.GetNextAnimatorClipInfo(0).ToList();
-            //foreach (var clipInfo in list)
-            //{
-            //    OffsetAnimation(clipInfo.clip);
-            //}
+            _spriteRenderer.flipX = flip;
         }
     }
 }
