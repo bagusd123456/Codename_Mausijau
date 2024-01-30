@@ -37,7 +37,8 @@ public class UnitCondition : MonoBehaviour
 
     public void Update()
     {
-        timeBeforeAttack -= Time.deltaTime;
+        if(timeBeforeAttack > 0)
+            timeBeforeAttack -= Time.deltaTime;
     }
 
     public void InitUnitStats()

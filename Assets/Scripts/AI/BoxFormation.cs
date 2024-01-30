@@ -8,7 +8,7 @@ public class BoxFormation : FormationBase {
     [SerializeField] private int _unitDepth = 5;
     [SerializeField] private bool _hollow = false;
     [SerializeField] private float _nthOffset = 0;
-
+    [Space] [SerializeField] private float _sphereRadius;
     public override IEnumerable<Vector3> EvaluatePoints() {
         var middleOffset = new Vector3(_unitWidth * 0.5f, 0, _unitDepth * 0.5f);
 
@@ -25,6 +25,36 @@ public class BoxFormation : FormationBase {
 
                 yield return pos;
             }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        var middleOffset = new Vector3(_unitWidth * 0.5f, 0, _unitDepth * 0.5f);
+        List<Vector3> transformPos = new List<Vector3>();
+
+        for (var x = 0; x < _unitWidth; x++)
+        {
+            for (var z = 0; z < _unitDepth; z++)
+            {
+                if (_hollow && x != 0 && x != _unitWidth - 1 && z != 0 && z != _unitDepth - 1) continue;
+                var pos = new Vector3(x + (z % 2 == 0 ? 0 : _nthOffset), 0, z);
+
+                pos -= middleOffset;
+
+                pos += GetNoise(pos);
+
+                pos *= Spread;
+
+                pos += transform.position;
+
+                transformPos.Add(pos);
+            }
+        }
+
+        for (int i = 0; i < transformPos.Count; i++)
+        {
+            Gizmos.DrawWireSphere(transformPos[i], _sphereRadius);
         }
     }
 }

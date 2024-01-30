@@ -11,6 +11,7 @@ public class ObjectSelector : MonoBehaviour
 
     public PointController currentUnit;
     public Transform currentSelected;
+    public Transform currentUnitTarget;
 
     public static Transform currentTargetPosition;
     void Start()
@@ -48,12 +49,13 @@ public class ObjectSelector : MonoBehaviour
                     //{
                     //    cameraTargetController.LockOnTarget(hit.transform, 20, true);
                     //}
-                    currentTargetPosition = hit.transform;
-                    currentUnit.MoveParentTo(hit.transform.position);
+                    //currentTargetPosition = hit.transform;
+                    //currentUnit.MoveParentTo(hit.transform.position);
+                    currentUnitTarget = hit.transform;
 
                     //Show the walk decal
                     //WalkDecal.transform.position = _moveTarget.WithNewY(0.1f);
-                    WalkDecal.transform.position = currentTargetPosition.position + Vector3.up * 0.05f;
+                    WalkDecal.transform.position = currentUnitTarget.position + Vector3.up * 0.05f;
                     WalkDecal.Play();
                 }
             }

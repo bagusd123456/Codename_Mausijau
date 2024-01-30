@@ -52,11 +52,11 @@ namespace Assets.Scripts
             }
         }
 
-        private Animator _animatorController;
+        public Animator _animatorController;
 
         private void Awake()
         {
-            _animatorController = GetComponentInChildren<Animator>();
+            
         }
 
         public void Update()

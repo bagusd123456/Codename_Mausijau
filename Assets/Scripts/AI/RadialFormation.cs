@@ -12,6 +12,9 @@ public class RadialFormation : FormationBase {
     [SerializeField] private float _ringOffset = 1;
     [SerializeField] private float _nthOffset = 0;
 
+    [Space][SerializeField] private float _sphereRadius;
+    public Vector3 offsetVector3;
+
     public override IEnumerable<Vector3> EvaluatePoints() {
         var amountPerRing = _amount / _rings;
         var ringOffset = 0f;
@@ -33,6 +36,41 @@ public class RadialFormation : FormationBase {
             }
 
             ringOffset += _ringOffset;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        List<Vector3> transformPos = new List<Vector3>();
+
+        var amountPerRing = _amount / _rings;
+        var ringOffset = 0f;
+        for (var i = 0; i < _rings; i++)
+        {
+            for (var j = 0; j < amountPerRing; j++)
+            {
+                var angle = j * Mathf.PI * (2 * _rotations) / amountPerRing + (i % 2 != 0 ? _nthOffset : 0);
+
+                var radius = _radius + ringOffset + j * _radiusGrowthMultiplier;
+                var x = Mathf.Cos(angle) * radius;
+                var z = Mathf.Sin(angle) * radius;
+
+                var pos = new Vector3(x, 0, z);
+                pos += offsetVector3;
+
+                pos += GetNoise(pos);
+
+                pos *= Spread;
+
+                transformPos.Add(pos);
+            }
+
+            ringOffset += _ringOffset;
+        }
+
+        for (int i = 0; i < transformPos.Count; i++)
+        {
+            Gizmos.DrawWireSphere(transformPos[i], _sphereRadius);
         }
     }
 }

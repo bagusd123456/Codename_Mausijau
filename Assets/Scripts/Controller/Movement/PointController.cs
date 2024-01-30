@@ -26,7 +26,9 @@ public class PointController : MonoBehaviour
     public Transform _parent;
 
     [SerializeField] private float _unitSpeed = 2;
+    public Vector3 _formationOffset;
 
+    public UnitGroup unitGroup;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,14 +51,16 @@ public class PointController : MonoBehaviour
             {
                 for (var i = 0; i < _spawnedUnits.Count; i++)
                 {
-                    var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
+                    //var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
 
-                    ai_Detection.currentState = AI_Detection.DetectionState.Moving;
-                    ai_Detection.controlledDuration = 1f;
+                    //ai_Detection.currentState = AI_Detection.DetectionState.Moving;
+                    //ai_Detection.controlledDuration = 1f;
                     //_spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
                 }
                 
-                //MoveParentTo(hit.point);
+                MoveParentTo(hit.point);
+                _points = Formation.EvaluatePoints().ToList();
+                //unitGroup.MoveAllUnitToPosition(_points, transform);
             }
             
         }
@@ -75,12 +79,12 @@ public class PointController : MonoBehaviour
 
         for (var i = 0; i < _spawnedUnits.Count; i++)
         {
-            var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
-            if (_spawnedUnits[i].isActiveAndEnabled && ai_Detection.currentState is AI_Detection.DetectionState.Idle or AI_Detection.DetectionState.Moving)
-            {
-                _spawnedUnits[i].SetDestination(transform.position + _points[i]);
-                ai_Detection.targetPosition = transform.position + _points[i];
-            }
+            //var ai_Detection = _spawnedUnits[i].GetComponent<AI_Detection>();
+            //if (_spawnedUnits[i].isActiveAndEnabled && ai_Detection.currentState is AI_Detection.DetectionState.Idle or AI_Detection.DetectionState.Moving)
+            //{
+            //    _spawnedUnits[i].SetDestination(transform.position + _points[i] + _formationOffset);
+            //    ai_Detection.targetPosition = transform.position + _points[i];
+            //}
             //_spawnedUnits[i].transform.position = Vector3.MoveTowards(_spawnedUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }

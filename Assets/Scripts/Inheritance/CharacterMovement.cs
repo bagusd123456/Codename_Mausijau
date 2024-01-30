@@ -13,8 +13,9 @@ public class CharacterMovement : MonoBehaviour
     private AnimationController animationController;
 
     private NavMeshAgent _agent;
+    private Rigidbody _rb;
 
-    private Vector3 _moveTarget = Vector3.zero;
+    public Vector3 _moveTarget = Vector3.zero;
     private Quaternion _lookRotation = Quaternion.identity;
     private Vector3 _direction = Vector3.zero;
     public bool _needToRotate = false;
@@ -22,6 +23,7 @@ public class CharacterMovement : MonoBehaviour
     private float _rotateSpeed = 10f;
     public float _walkSpeed = 2.5f;
     public float _runSpeed = 4f;
+    public float agentMoveSpeed;
 
     public MovementStates _currentMovement;
     public MovementStates CurrentMovement
@@ -32,10 +34,10 @@ public class CharacterMovement : MonoBehaviour
             switch (value)
             {
                 case MovementStates.Walk:
-                    _agent.speed = 2.5f;
+                    _agent.speed = _walkSpeed;
                     break;
                 case MovementStates.Run:
-                    _agent.speed = 4f;
+                    _agent.speed = _runSpeed;
                     break;
             }
 
@@ -55,10 +57,28 @@ public class CharacterMovement : MonoBehaviour
         //Register listener events for inputs
 
         _agent = GetComponent<NavMeshAgent>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
+        agentMoveSpeed = _agent.velocity.magnitude / _agent.speed;
+        if (_agent.velocity.magnitude / _agent.speed >= 0.7f)
+        {
+            _currentMovement = MovementStates.Run;
+        }
+        else if (_agent.velocity.magnitude / _agent.speed >= 0.1f)
+        {
+            _currentMovement = MovementStates.Run;
+        }
+        else if (_agent.velocity.magnitude / _agent.speed < 0.1f)
+        {
+            _currentMovement = MovementStates.None;
+        }
+
+        if(animationController.isActiveAndEnabled)
+            animationController.CurrentState = CurrentMovement;
+
         // Confirm that the player is done navigating
         if (!_needToRotate && !IsNavigating && _currentMovement != MovementStates.None)
         {
@@ -72,47 +92,11 @@ public class CharacterMovement : MonoBehaviour
 
             if (Vector3.Dot(_direction, transform.forward) >= .99f)
             {
-                _agent.SetDestination(_moveTarget);
+                //_agent.SetDestination(_moveTarget);
                 animationController.CurrentState = CurrentMovement;
 
                 _needToRotate = false;
             }
-        }
-    }
-
-    /// <summary>
-    /// Called when the player does a double left mouse button click
-    /// </summary>
-    private void Run(CallbackContext context)
-    {
-        CurrentMovement = MovementStates.Run;
-        animationController.CurrentState = CurrentMovement;
-    }
-
-    /// <summary>
-    /// Called when the player does a single left mouse button click
-    /// </summary>
-    private void Walk(CallbackContext context)
-    {
-        if (currentTargetPosition == lastTargetPosition)
-        {
-            return;
-        }
-
-        if (NavMesh.SamplePosition(ObjectSelector.currentTargetPosition.position, out NavMeshHit navPos, .25f, 1 << 0))
-        {
-            //Stop navigating
-            StopNavigation();
-
-            _moveTarget = navPos.position;
-
-            //Calculate rotation direction
-            _direction = (_moveTarget.WithNewY(transform.position.y) - transform.position).normalized;
-            _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
-            _needToRotate = true;
-
-            //Set the speed and ready the animation
-            CurrentMovement = MovementStates.Walk;
         }
     }
 

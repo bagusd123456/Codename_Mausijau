@@ -29,7 +29,7 @@ public class AI_Detection : MonoBehaviour
     public UnitCondition closestTarget;
 
     public float minimumDistance = 0.2f;
-    [HideInInspector] public Vector3 targetPosition;
+    public Vector3 targetPosition;
 
     public float controlledDuration;
     public float delayTime;
@@ -86,7 +86,7 @@ public class AI_Detection : MonoBehaviour
                         characterMovement.LookToTarget(closestTarget.transform.position);
 
                         closestTarget.GetComponent<AI_Detection>().ChangeStateToAttack(currentUnit);
-                        currentUnit.Attack(closestTarget, currentUnit.unitData.baseDamage);
+                        currentUnit.Attack(closestTarget, currentUnit.unitData.baseAttackDamage);
                         characterMovement.SetAnimation(MovementStates.Attack);
                     }
                     else
@@ -104,6 +104,7 @@ public class AI_Detection : MonoBehaviour
         else if (currentState == DetectionState.Moving)
         {
             characterMovement.SetAnimation(MovementStates.Run);
+            LookToPosition(targetPosition);
             float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
             if (distanceToTarget < 0.8f)
             {
@@ -228,11 +229,27 @@ public class AI_Detection : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
+    public void LookToPosition(Vector3 targetPos, float rotateSpeed = 1f)
+    {
+        Vector3 direction = (targetPos.WithNewY(transform.position.y) - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed);
+    }
+
+    public void MoveToPosition(Vector3 target)
+    {
+        currentState = DetectionState.Moving;
+        targetPosition = target;
+        characterMovement.MoveTo(targetPosition);
+    }
+
     public void ChangeStateToAttack(UnitCondition unitTarget)
     {
         closestTarget = unitTarget;
         currentState = DetectionState.Attacking;
     }
+
+
 
     public void OnDrawGizmosSelected()
     {
@@ -249,9 +266,14 @@ public class AI_Detection : MonoBehaviour
 
         if(closestTarget != null)
             Gizmos.DrawWireSphere(targetPosition, .5f);
+        else
+            Gizmos.DrawWireSphere(targetPosition, .5f);
+
         Gizmos.DrawWireSphere(transform.position, minimumDistance);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, radius);
+
+        Gizmos.color = Color.green;
 
     }
 }

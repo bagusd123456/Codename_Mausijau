@@ -28,6 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     public float _walkSpeed = 2.5f;
     public float _runSpeed = 4f;
 
+    public SpriteRenderer characterSprite;
+
     private MovementStates _currentMovement;
     public MovementStates CurrentMovement
     {
@@ -57,6 +59,10 @@ public class PlayerMovementController : MonoBehaviour
 
     void Start()
     {
+        if (characterSprite == null)
+        {
+            characterSprite = GetComponentInChildren<SpriteRenderer>();
+        }
         animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
         _inputMapping.Default.Walk.performed += Walk;
@@ -80,8 +86,8 @@ public class PlayerMovementController : MonoBehaviour
 
             if (Vector3.Dot(_direction, transform.forward) >= .99f)
             {
-                _agent.SetDestination(_moveTarget);
-                animationController.CurrentState = CurrentMovement;
+                //_agent.SetDestination(_moveTarget);
+                //animationController.CurrentState = CurrentMovement;
 
                 _needToRotate = false;
             }
@@ -97,8 +103,20 @@ public class PlayerMovementController : MonoBehaviour
     /// </summary>
     private void Run(CallbackContext context)
     {
-        CurrentMovement = MovementStates.Run;
-        animationController.CurrentState = CurrentMovement;
+        Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 50f))
+        {
+            if (!hit.collider.CompareTag("Platform"))
+            {
+                //CurrentMovement = MovementStates.None;
+                //animationController.CurrentState = CurrentMovement;
+                return;
+            }
+        }
+
+        //CurrentMovement = MovementStates.Run;
+        //animationController.CurrentState = CurrentMovement;
     }
 
     /// <summary>
@@ -111,6 +129,12 @@ public class PlayerMovementController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 50f))
         {
+            if (!hit.collider.CompareTag("Platform"))
+            {
+                //CurrentMovement = MovementStates.None;
+                return;
+            }
+
             if (NavMesh.SamplePosition(hit.point, out NavMeshHit navPos, .25f, 1 << 0))
             {
                 //Stop navigating
@@ -118,19 +142,25 @@ public class PlayerMovementController : MonoBehaviour
 
                 _moveTarget = navPos.position;
 
-                
-
                 //Calculate rotation direction
                 _direction = (_moveTarget.WithNewY(transform.position.y) - transform.position).normalized;
                 _lookRotation = Quaternion.LookRotation(_direction, Vector3.up);
                 _needToRotate = true;
 
+                if (_direction.x > 0)
+                {
+                    characterSprite.flipX = false;
+                }
+                else
+                {
+                    characterSprite.flipX = true;
+                }
                 //Set the speed and ready the animation
-                CurrentMovement = MovementStates.Walk;
+                //CurrentMovement = MovementStates.Walk;
 
                 if (IsNavigating && Vector3.Dot(_direction, transform.forward) >= 0.25f)
                 {
-                    _agent.SetDestination(_moveTarget);
+                    //_agent.SetDestination(_moveTarget);
                 }
             }
         }
