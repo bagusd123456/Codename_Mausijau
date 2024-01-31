@@ -9,9 +9,6 @@ public class CharacterAttack : MonoBehaviour
 
     public GameObject projectile;
     public Transform firePoint;
-    public Transform target;
-
-    public List<Transform> multipleTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,33 +21,48 @@ public class CharacterAttack : MonoBehaviour
         
     }
 
-    [Button("Trigger Attack")]
-    public void Attack()
+    public void Attack(Transform targetTransform)
     {
-        LaunchProjectile(target.position);
-    }
-
-    [Button("Trigger Attack Multiple")]
-    public void AttackMultiple()
-    {
-        for (int i = 0; i < multipleTarget.Count; i++)
+        if (_unitCondition.unitData.attackType == BaseUnitData.AttackType.Melee)
         {
-            Vector3 targetPos = multipleTarget[i].position;
-            LaunchProjectile(targetPos, multipleTarget[i]);
+            LaunchMelee(targetTransform);
+        }
+        else
+        {
+            LaunchProjectile(targetTransform.position);
         }
     }
 
-    public void LaunchProjectile(Vector3 targetPos, Transform definedTarget = null)
+    public void AttackMultiple(List<Transform> targetUnitList)
     {
+        foreach (var item in targetUnitList)
+        {
+            Vector3 targetPos = item.position;
+            LaunchProjectile(targetPos);
+        }
+    }
+
+    public void LaunchMelee(Transform targetUnit)
+    {
+        if (targetUnit.TryGetComponent(out UnitCondition unit))
+        {
+            int dmgAmount = _unitCondition.unitData.baseAttackDamage;
+
+            unit.TakeDamage(dmgAmount);
+            //Debug.Log($"Unit: {unit.gameObject.name} " +
+            //          $"\nTaken <color=red>{dmgAmount} damage...</color>");
+        }
+    }
+
+    public void LaunchProjectile(Vector3 targetPos)
+    {
+        firePoint.LookAt(targetPos);
+
+        int dmgAmount = _unitCondition.unitData.baseAttackDamage;
         float distance = Vector3.Distance(transform.position, targetPos);
         var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        projectileGO.GetComponent<ProjectileBehaviour>().damage = _unitCondition.unitData.baseAttackDamage;
+        projectileGO.GetComponent<ProjectileBehaviour>().damage = dmgAmount;
 
-        if(definedTarget == null)
-            firePoint.LookAt(target.position);
-        else
-            firePoint.LookAt(definedTarget);
-
-        projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * Mathf.Sqrt(distance) * 2 + firePoint.up * Mathf.Sqrt(distance) * 2, ForceMode.Impulse);
+        projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * (Mathf.Sqrt(distance) * 2) + firePoint.up * (Mathf.Sqrt(distance) * 2), ForceMode.Impulse);
     }
 }

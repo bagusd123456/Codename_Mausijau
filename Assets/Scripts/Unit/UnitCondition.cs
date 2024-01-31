@@ -1,20 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DamageNumbersPro;
 using UnityEngine;
 
-public class CustomUnitData
+public class CustomUnitData : BaseUnitData
 {
-    public int health = 100;
-    public int damage = 2;
-    //public int baseArmor;
-    public int moveSpeed = 5;
-
-    [Space]
-    public int sightRange = 2;
-
-    public int attackSpeed = 2;
-    public int attackRange = 2;
+    
 }
 
 public class UnitCondition : MonoBehaviour
@@ -23,6 +15,8 @@ public class UnitCondition : MonoBehaviour
     private CustomUnitData customUnitData;
 
     public BaseUnitData unitData;
+
+    public DamageNumber damageNumberPrefab;
     [Header("Unit Stats")]
     public int currentHealth;
     public bool isDead;
@@ -49,6 +43,8 @@ public class UnitCondition : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        SpawnDamageNumber(amount);
+
         currentHealth -= amount;
 
         if (currentHealth <= 0)
@@ -69,5 +65,15 @@ public class UnitCondition : MonoBehaviour
             targetUnit.TakeDamage(damageAmount);
             //Debug.Log($"{targetUnit.name} Taken {damageAmount} Damage");
         }
+    }
+
+    public void SpawnDamageNumber(int number)
+    {
+        var GO = damageNumberPrefab.Spawn(transform.position + Vector3.up * 0.2f);
+        GO.number = number;
+        if(gameObject.layer == LayerMask.NameToLayer("AlliedUnit"))
+            GO.SetColor(Color.blue);
+        else
+            GO.SetColor(Color.red);
     }
 }
