@@ -76,4 +76,15 @@ public class UnitCondition : MonoBehaviour
         else
             GO.SetColor(Color.red);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        float currentRadius = 0f;
+
+        if (unitData != null)
+        {
+            currentRadius = unitData.baseAttackRange;
+            Gizmos.DrawWireSphere(transform.position, currentRadius);
+        }
+    }
 }

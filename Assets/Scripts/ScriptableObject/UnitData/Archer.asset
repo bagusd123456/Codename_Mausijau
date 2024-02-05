@@ -15,8 +15,8 @@ MonoBehaviour:
   unitId: 1
   unitName: Archer
   baseHealth: 85
-  baseDamage: 2
-  baseMoveSpeed: 5
+  baseMoveSpeed: 2
   attackType: 1
+  baseAttackDamage: 2
   baseAttackSpeed: 4
-  baseAttackRange: 4
+  baseAttackRange: 10

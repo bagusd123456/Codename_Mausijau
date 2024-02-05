@@ -23,7 +23,7 @@ public class BaseUnitData : ScriptableObject
     [Header("Attack Parameter")]
     public AttackType attackType;
     public int baseAttackDamage = 2;
-    public int baseAttackSpeed = 2;
-    public int baseAttackRange = 2;
+    public float baseAttackSpeed = 2;
+    public float baseAttackRange = 2;
 
 }

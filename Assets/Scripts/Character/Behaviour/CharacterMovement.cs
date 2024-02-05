@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
 
     private NavMeshAgent _agent;
     private Rigidbody _rb;
+    private UnitCondition _unitCondition;
 
     public Vector3 _moveTarget = Vector3.zero;
     private Quaternion _lookRotation = Quaternion.identity;
@@ -21,8 +22,8 @@ public class CharacterMovement : MonoBehaviour
     public bool _needToRotate = false;
 
     private float _rotateSpeed = 10f;
-    public float _walkSpeed = 2.5f;
-    public float _runSpeed = 4f;
+    private float _walkSpeed = 2.5f;
+    private float _runSpeed = 4f;
     public float agentMoveSpeed;
 
     public MovementStates _currentMovement;
@@ -58,6 +59,7 @@ public class CharacterMovement : MonoBehaviour
 
         _agent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
+        _unitCondition = GetComponent<UnitCondition>();
     }
 
     private void Update()
@@ -89,6 +91,9 @@ public class CharacterMovement : MonoBehaviour
 
     public void HandleMovementState()
     {
+        //Change the speed of the agent to match the unit's base speed
+        _agent.speed = _unitCondition.unitData.baseMoveSpeed;
+
         agentMoveSpeed = _agent.velocity.magnitude / _agent.speed;
         if (_agent.velocity.magnitude / _agent.speed >= 0.7f)
         {

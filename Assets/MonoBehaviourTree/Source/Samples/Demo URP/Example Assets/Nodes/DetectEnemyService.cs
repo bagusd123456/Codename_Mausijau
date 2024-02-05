@@ -28,6 +28,7 @@ namespace MBTExample
             else
             {
                 variableToSet.Value = null;
+                enemyGameObject.Value = null;
             }
         }
     }

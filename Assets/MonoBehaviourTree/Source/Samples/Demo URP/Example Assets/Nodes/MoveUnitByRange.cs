@@ -7,14 +7,14 @@ using MBT;
 namespace MBTExample
 {
     [AddComponentMenu("")]
-    [MBTNode("Example/Move Navmesh Agent")]
-    public class MoveNavmeshAgent : Leaf
+    [MBTNode("Example/Move Unit By Range")]
+    public class MoveUnitByRange : Leaf
     {
         public TransformReference destination;
         public bool useVector3;
         public Vector3Reference destinationVector3;
         public NavMeshAgent agent;
-        public float stopDistance = 2f;
+        public FloatReference stopDistance;
         [Tooltip("How often target position should be updated")]
         public float updateInterval = 1f;
         private float time = 0;
@@ -48,7 +48,7 @@ namespace MBTExample
                 return NodeResult.running;
             }
             // Check if agent is very close to destination
-            if (agent.remainingDistance < stopDistance)
+            if (agent.remainingDistance < stopDistance.Value)
             {
                 return NodeResult.success;
             }

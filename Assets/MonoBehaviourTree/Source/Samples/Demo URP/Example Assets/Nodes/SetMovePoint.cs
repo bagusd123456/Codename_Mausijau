@@ -21,15 +21,19 @@ namespace MBTExample
                 return NodeResult.failure;
             }
 
-            index += 1;
-
             // Stop after last waypoint
             if (index >= waypoints.Length)
             {
                 return NodeResult.failure;
             }
+            else if (index == waypoints.Length - 1)
+            {
+                return NodeResult.success;
+            }
             else
             {
+                if (index < waypoints.Length)
+                    index += 1;
                 // Set blackboard variable with need waypoint (position)
                 variableToSet.Value = waypoints[index];
                 return NodeResult.success;
