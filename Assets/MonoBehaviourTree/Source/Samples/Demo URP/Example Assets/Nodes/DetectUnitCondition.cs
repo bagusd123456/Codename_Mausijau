@@ -18,9 +18,9 @@ namespace MBTExample
 
         public override void Task()
         {
-            if (objectSelector.currentSelected != null)
+            if (objectSelector.selectedTransform != null)
             {
-                target = objectSelector.currentUnitTarget;
+                //target = objectSelector.currentSelectedArmy;
             }
 
             if (target != null)

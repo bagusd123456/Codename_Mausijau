@@ -53,8 +53,6 @@ GameObject:
   - component: {fileID: 6984930532096905270}
   - component: {fileID: 6984930532096905271}
   - component: {fileID: 6984930532096905266}
-  - component: {fileID: 6984930532096905254}
-  - component: {fileID: 6984930532096905252}
   - component: {fileID: 6984930532096905253}
   - component: {fileID: 6984930532096905259}
   - component: {fileID: 6984930532096905258}
@@ -70,6 +68,8 @@ GameObject:
   - component: {fileID: 6984930532096905232}
   - component: {fileID: 6984930532096905238}
   - component: {fileID: 6984930532096905239}
+  - component: {fileID: 1553553843}
+  - component: {fileID: 3387504213171772112}
   m_Layer: 7
   m_Name: PlayerParentBT
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 6984930532096905238}
+  selectedEditorNode: {fileID: 3387504213171772112}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -158,13 +158,13 @@ MonoBehaviour:
   title: Root
   rect:
     serializedVersion: 2
-    x: 200
-    y: -40
+    x: 199
+    y: -44
     width: 160
     height: 45
   parent: {fileID: 0}
   children:
-  - {fileID: 6984930532096905254}
+  - {fileID: 3387504213171772112}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
     y: 200
     width: 160
     height: 45
-  parent: {fileID: 6984930532096905252}
+  parent: {fileID: 0}
   children:
   - {fileID: 6984930532096905279}
   behaviourTree: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  range: 15
+  range: 12
   variableToSet:
     useConstant: 0
     mode: 1
@@ -212,6 +212,18 @@ MonoBehaviour:
     blackboard: {fileID: 6984930532096905250}
     key: targetUnit
     constantValue: {fileID: 0}
+  selfCondition:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6984930532096905250}
+    key: self
+    constantValue: {fileID: 0}
+  onCommand:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
 --- !u!114 &6984930532096905279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,81 +426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: waypointTarget
   val: {fileID: 0}
---- !u!114 &6984930532096905254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984930532096905294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70bd8823c6cdda46becaf26611eee4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Player Command Service
-  rect:
-    serializedVersion: 2
-    x: 200
-    y: 40
-    width: 160
-    height: 45
-  parent: {fileID: 6984930532096905276}
-  children:
-  - {fileID: 6984930532096905252}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  interval: 1
-  randomDeviation: 0
-  callOnEnter: 1
-  objectSelector: {fileID: 0}
-  target: {fileID: 0}
-  variableToSet:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 6984930532096905250}
-    key: commandTarget
-    constantValue: {fileID: 0}
-  onCommandToSet:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 6984930532096905250}
-    key: onCommand
-    constantValue: 0
-  targetReset:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 6984930532096905250}
-    key: waypointTarget
-    constantValue: {fileID: 0}
---- !u!114 &6984930532096905252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984930532096905294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Selector
-  rect:
-    serializedVersion: 2
-    x: 200
-    y: 120
-    width: 160
-    height: 45
-  parent: {fileID: 6984930532096905254}
-  children:
-  - {fileID: 6984930532096905259}
-  - {fileID: 6984930532096905278}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  random: 0
 --- !u!114 &6984930532096905253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,17 +481,17 @@ MonoBehaviour:
   title: Is Set Condition
   rect:
     serializedVersion: 2
-    x: 40
+    x: 41
     y: 200
     width: 160
     height: 45
-  parent: {fileID: 6984930532096905252}
+  parent: {fileID: 0}
   children:
   - {fileID: 6984930532096905263}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
-  abort: 1
+  abort: 3
   invert: 0
   type: 0
   boolReference:
@@ -971,6 +908,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: unitAttackRange
   val: 0
+--- !u!114 &1553553843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984930532096905294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: 200
+    y: 120
+    width: 160
+    height: 45
+  parent: {fileID: 3387504213171772112}
+  children:
+  - {fileID: 6984930532096905259}
+  - {fileID: 6984930532096905278}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &3387504213171772112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984930532096905294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70bd8823c6cdda46becaf26611eee4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Player Command Service
+  rect:
+    serializedVersion: 2
+    x: 200
+    y: 40
+    width: 160
+    height: 45
+  parent: {fileID: 6984930532096905276}
+  children:
+  - {fileID: 1553553843}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  interval: 1
+  randomDeviation: 0
+  callOnEnter: 1
+  selfCondition:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6984930532096905250}
+    key: self
+    constantValue: {fileID: 0}
+  variableToSet:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6984930532096905250}
+    key: commandTarget
+    constantValue: {fileID: 0}
+  onCommandToSet:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6984930532096905250}
+    key: onCommand
+    constantValue: 0
+  targetToReset:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6984930532096905250}
+    key: waypointTarget
+    constantValue: {fileID: 0}
 --- !u!1 &6984930532318026711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1126,7 @@ GameObject:
   - component: {fileID: 6984930533008278301}
   - component: {fileID: 6984930533008278302}
   - component: {fileID: 6984930533008278278}
+  - component: {fileID: 316678169111359070}
   m_Layer: 7
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -1124,7 +1141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6984930533008278297}
-  m_LocalRotation: {x: -0, y: 0.68385696, z: -0, w: -0.7296161}
+  m_LocalRotation: {x: 0, y: -0.68385977, z: 0, w: 0.72961354}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1135,7 +1152,7 @@ Transform:
   - {fileID: 6984930531764251947}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -86.292, z: 0}
 --- !u!195 &6984930533008278279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1226,6 +1243,10 @@ MonoBehaviour:
   damageNumberPrefab: {fileID: 1259023133563206875, guid: bfd261065d2338f44bbfeaae314cb943, type: 3}
   currentHealth: 100
   isDead: 0
+  isSelected: 0
+  unitArmy:
+  - {fileID: 6984930533008278300}
+  - {fileID: 0}
   timeBeforeAttack: -0.98323286
 --- !u!136 &6984930533008278301
 CapsuleCollider:
@@ -1271,7 +1292,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4441500793158560533, guid: 240c7a09bba3f154892e2ebf548e2699, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 6984930531764251947}
+--- !u!114 &316678169111359070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984930533008278297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.96575785, b: 1, a: 1}
+  outlineWidth: 9
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6984930533443844263
 GameObject:
   m_ObjectHideFlags: 0
