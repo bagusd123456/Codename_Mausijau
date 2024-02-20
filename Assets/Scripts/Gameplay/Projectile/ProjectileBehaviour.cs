@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
+    public UnitCondition projectileOwner;
+
     public Transform target;
     public int damage;
 
@@ -21,6 +23,14 @@ public class ProjectileBehaviour : MonoBehaviour
             {
                 //If unit is not dead then take damage
                 targetUnit.TakeDamage(damage);
+
+                //Alert other unit that this unit has been attacked
+                if (projectileOwner != null)
+                {
+                    targetUnit.OnUnitAttacked?.Invoke(projectileOwner);
+
+                }
+
                 //Debug.Log($"Unit: {other.name} " +
                 //          $"\nTaken <color=red>{damage} damage...</color>");
             }

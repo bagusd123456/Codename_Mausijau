@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjectSelector : MonoBehaviour
 {
+    public static Action<Transform> OnTargetSelected;
     public ParticleSystem WalkDecal;
 
     Camera mainCam;
     public RTSCameraTargetController cameraTargetController;
 
     public PointController currentUnit;
-    public Transform currentSelected;
-    public Transform currentUnitTarget;
+    public Transform hoveredTransform;
+    public Transform selectedTransform;
+    public List<UnitCondition> currentSelectedArmy = new List<UnitCondition>();
 
     public static Transform currentTargetPosition;
     void Start()
@@ -24,23 +28,37 @@ public class ObjectSelector : MonoBehaviour
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (currentSelected != hit.transform)
+            //If the raycast hits a transform try to get the outline component and enable it
+            if (hit.transform != null)
             {
-                if (currentSelected != null && currentSelected != hit.transform)
+                var lastHovered = hoveredTransform;
+
+                hoveredTransform = hit.transform;
+                if (hit.transform.TryGetComponent(out Outline unitOutline))
+                    unitOutline.enabled = true;
+
+                //Check if hovered transform is not selected in group
+                bool isGroupSelected = false;
+                if(lastHovered != null)
+                    if (lastHovered.transform.TryGetComponent(out UnitCondition unit))
+                        isGroupSelected = currentSelectedArmy.Contains(unit);
+
+                if (lastHovered != null && lastHovered != hoveredTransform && !isGroupSelected)
                 {
-                    currentSelected.GetComponent<Outline>().enabled = false;
-                    currentSelected = null;
+                    if(lastHovered.transform.TryGetComponent(out Outline lastHoveredUnitOutline))
+                    {
+                        lastHoveredUnitOutline.enabled = false;
+                    }
                 }
             }
-            if (hit.transform.tag == "Platform")
+
+            //If the player clicks on a target, register the target as selected
+            if (Input.GetMouseButtonDown(0))
             {
-                if (currentSelected != hit.transform)
+                //If the target is a platform, lock on to the platform
+                if (hit.transform.CompareTag("Platform"))
                 {
-                    currentSelected = hit.transform;
-                    currentSelected.GetComponent<Outline>().enabled = true;
-                }
-                if (Input.GetMouseButtonDown(0))
-                {
+                    ////Lock on to the target
                     //if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
                     //{
                     //    cameraTargetController.LockOnTarget(hit.transform.position, 10);
@@ -49,15 +67,54 @@ public class ObjectSelector : MonoBehaviour
                     //{
                     //    cameraTargetController.LockOnTarget(hit.transform, 20, true);
                     //}
-                    //currentTargetPosition = hit.transform;
-                    //currentUnit.MoveParentTo(hit.transform.position);
-                    currentUnitTarget = hit.transform;
 
-                    //Show the walk decal
-                    //WalkDecal.transform.position = _moveTarget.WithNewY(0.1f);
-                    WalkDecal.transform.position = currentUnitTarget.position + Vector3.up * 0.05f;
+                    OnTargetSelected?.Invoke(hit.transform);
+                    selectedTransform = hit.transform;
+                    WalkDecal.transform.position = selectedTransform.position + Vector3.up * 0.05f;
                     WalkDecal.Play();
                 }
+
+                //Check if the target is a unit
+                else
+                {
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AlliedUnit"))
+                    {
+                        selectedTransform = hit.transform;
+                        currentSelectedArmy = hit.transform.GetComponent<UnitCondition>().unitArmy;
+
+                        if (currentSelectedArmy.Count > 0)
+                        {
+                            foreach (var selectedUnit in currentSelectedArmy)
+                            {
+                                selectedUnit.isSelected = true;
+
+                                if (selectedUnit.TryGetComponent(out Outline unitOutline))
+                                    unitOutline.enabled = true;
+                            }
+                        }
+                    }
+                    
+                    //If not a unit, reset the selected transform
+                    else
+                    {
+                        if (currentSelectedArmy != null && currentSelectedArmy.Count > 0)
+                        {
+                            foreach (var selectedUnit in currentSelectedArmy)
+                            {
+                                selectedUnit.isSelected = false;
+
+                                if (selectedUnit.TryGetComponent(out Outline unitOutline))
+                                    unitOutline.enabled = false;
+                            }
+                        }
+
+                        currentSelectedArmy = new List<UnitCondition>();
+                        selectedTransform = null;
+                        OnTargetSelected?.Invoke(null);
+                    }
+                }
+
+                
             }
         }
 

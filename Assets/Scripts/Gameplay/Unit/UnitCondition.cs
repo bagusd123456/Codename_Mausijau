@@ -12,20 +12,28 @@ public class CustomUnitData : BaseUnitData
 public class UnitCondition : MonoBehaviour
 {
     public static Action OnUnitDeath;
+    public Action<UnitCondition> OnUnitAttacked;
+
+    private Outline outline;
+    [Header("Unit Properties")]
     private CustomUnitData customUnitData;
-
     public BaseUnitData unitData;
-
     public DamageNumber damageNumberPrefab;
+
     [Header("Unit Stats")]
     public int currentHealth;
     public bool isDead;
+    [HideInInspector] 
+    public bool isSelected;
+    [Space]
+    public List<UnitCondition> unitArmy = new List<UnitCondition>();
 
     [Header("Unit Attack")]
     public float timeBeforeAttack;
 
     void Awake()
     {
+        outline = GetComponent<Outline>();
         InitUnitStats();
     }
 
@@ -75,6 +83,12 @@ public class UnitCondition : MonoBehaviour
             GO.SetColor(Color.blue);
         else
             GO.SetColor(Color.red);
+    }
+
+    public bool IsSelected()
+    {
+        outline.enabled = isSelected;
+        return isSelected;
     }
 
     private void OnDrawGizmosSelected()

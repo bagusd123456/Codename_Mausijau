@@ -23,6 +23,14 @@ namespace MBTExample
         {
             time = 0;
             agent.isStopped = false;
+
+            //Bug, sometimes the destination is not set
+            if (destination.Value == null && !useVector3)
+            {
+                //Debug.LogError("Destination is not set. Please set the destination transform or use Vector3");
+                return;
+            }
+
             if (useVector3)
                 agent.SetDestination(destinationVector3.Value);
             else

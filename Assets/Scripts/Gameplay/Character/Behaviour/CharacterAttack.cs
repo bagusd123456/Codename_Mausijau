@@ -46,9 +46,13 @@ public class CharacterAttack : MonoBehaviour
     {
         if (targetUnit.TryGetComponent(out UnitCondition unit))
         {
+            //Give damage to the target unit
             int dmgAmount = _unitCondition.unitData.baseAttackDamage;
-
             unit.TakeDamage(dmgAmount);
+
+            //Alert other unit that this unit has been attacked
+            unit.OnUnitAttacked?.Invoke(_unitCondition);
+
             //Debug.Log($"Unit: {unit.gameObject.name} " +
             //          $"\nTaken <color=red>{dmgAmount} damage...</color>");
         }
@@ -56,13 +60,18 @@ public class CharacterAttack : MonoBehaviour
 
     public void LaunchProjectile(Vector3 targetPos)
     {
+        //Set the projectile to look at the target position
         firePoint.LookAt(targetPos);
 
-        int dmgAmount = _unitCondition.unitData.baseAttackDamage;
+        //Set projectile launch force
         float distance = Vector3.Distance(transform.position, targetPos);
         var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        projectileGO.GetComponent<ProjectileBehaviour>().damage = dmgAmount;
+        projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * (Mathf.Sqrt(distance) * 2.2f) + firePoint.up * (Mathf.Sqrt(distance) * 2.1f), ForceMode.Impulse);
 
-        projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * (Mathf.Sqrt(distance) * 2) + firePoint.up * (Mathf.Sqrt(distance) * 2), ForceMode.Impulse);
+        //Set Projectile Behaviour properties
+        var projectileBehaviour = projectileGO.GetComponent<ProjectileBehaviour>();
+        projectileBehaviour.projectileOwner = _unitCondition;
+        int dmgAmount = _unitCondition.unitData.baseAttackDamage;
+        projectileBehaviour.damage = dmgAmount;
     }
 }
