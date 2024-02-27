@@ -12,13 +12,10 @@ namespace MBTExample
     public class PlayerCommandService : Service
     {
         private ObjectSelector objectSelector;
-        
-        private Transform target;
 
         public TransformReference selfCondition = new TransformReference(VarRefMode.DisableConstant);
         public TransformReference variableToSet = new TransformReference(VarRefMode.DisableConstant);
         public BoolReference onCommandToSet = new BoolReference(VarRefMode.DisableConstant);
-        public TransformReference targetToReset = new TransformReference(VarRefMode.DisableConstant);
 
         public void OnEnable()
         {
@@ -35,8 +32,16 @@ namespace MBTExample
             var currentUnit = selfCondition.Value.GetComponent<UnitCondition>();
             if (!currentUnit.isDead && currentUnit.isSelected)
             {
-                target = targetTransform;
-                onCommandToSet.Value = true;
+                variableToSet.Value = targetTransform;
+
+                if (targetTransform == null)
+                {
+                    onCommandToSet.Value = false;
+                }
+                else
+                {
+                    onCommandToSet.Value = true;
+                }
             }
         }
 
@@ -57,17 +62,11 @@ namespace MBTExample
                 }
             }
 
-            if (target != null)
+            if (variableToSet.Value == null) return;
+            //Distance between Unit and target
+            float distance = Vector3.Distance(selfCondition.Value.position, variableToSet.Value.position);
+            if (distance < 1f)
             {
-
-                variableToSet.Value = target;
-                //onCommandToSet.Value = true;
-
-                //targetReset.Value = null;
-            }
-            else
-            {
-                variableToSet.Value = null;
                 onCommandToSet.Value = false;
             }
         }

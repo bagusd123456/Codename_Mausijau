@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public enum Condition {Idle, Running, Paused, Busy, AlliedWin, EnemyWin, Draw}
 
+    private bool _gameFinished = false;
+
     [ReadOnly]
     public Condition s_gameState;
     public Condition gameState
@@ -77,13 +79,13 @@ public class GameManager : MonoBehaviour
                 enemyUnit.Add(unit);
             }
 
-            //unit.currentHealth = unit.unitData.baseHealth;
+            unit.currentHealth = unit.unitData.baseHealth;
+            unit.isDead = false;
         }
         unitChecked = true;
 
         yield return new WaitUntil(() => unitChecked);
         gameState = Condition.Running;
-        //Debug.Log($"Unit Check Finished....");
     }
 
     public void FixedUpdate()
@@ -112,24 +114,5 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log($"Winner is: {gameState}");
         }
-        //while (gameState == Condition.Running)
-        //{
-        //    foreach (var unit in alliedUnit)
-        //    {
-        //        if (unit.isDead)
-        //        {
-        //            alliedUnit.Remove(unit);
-        //        }
-        //    }
-
-        //    foreach (var unit in enemyUnit)
-        //    {
-        //        if (unit.isDead)
-        //        {
-        //            enemyUnit.Remove(unit);
-        //        }
-        //    }
-        //}
-        
     }
 }

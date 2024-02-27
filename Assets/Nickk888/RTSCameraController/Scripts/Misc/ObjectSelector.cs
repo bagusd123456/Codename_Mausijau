@@ -58,16 +58,6 @@ public class ObjectSelector : MonoBehaviour
                 //If the target is a platform, lock on to the platform
                 if (hit.transform.CompareTag("Platform"))
                 {
-                    ////Lock on to the target
-                    //if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
-                    //{
-                    //    cameraTargetController.LockOnTarget(hit.transform.position, 10);
-                    //}
-                    //else
-                    //{
-                    //    cameraTargetController.LockOnTarget(hit.transform, 20, true);
-                    //}
-
                     OnTargetSelected?.Invoke(hit.transform);
                     selectedTransform = hit.transform;
                     WalkDecal.transform.position = selectedTransform.position + Vector3.up * 0.05f;
@@ -79,44 +69,70 @@ public class ObjectSelector : MonoBehaviour
                 {
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AlliedUnit"))
                     {
-                        selectedTransform = hit.transform;
-                        currentSelectedArmy = hit.transform.GetComponent<UnitCondition>().unitArmy;
-
-                        if (currentSelectedArmy.Count > 0)
-                        {
-                            foreach (var selectedUnit in currentSelectedArmy)
-                            {
-                                selectedUnit.isSelected = true;
-
-                                if (selectedUnit.TryGetComponent(out Outline unitOutline))
-                                    unitOutline.enabled = true;
-                            }
-                        }
+                        ResetSelectedArmy();
+                        SelectUnitArmy(hit.transform);
                     }
                     
                     //If not a unit, reset the selected transform
                     else
                     {
-                        if (currentSelectedArmy != null && currentSelectedArmy.Count > 0)
-                        {
-                            foreach (var selectedUnit in currentSelectedArmy)
-                            {
-                                selectedUnit.isSelected = false;
-
-                                if (selectedUnit.TryGetComponent(out Outline unitOutline))
-                                    unitOutline.enabled = false;
-                            }
-                        }
-
-                        currentSelectedArmy = new List<UnitCondition>();
-                        selectedTransform = null;
-                        OnTargetSelected?.Invoke(null);
+                        ResetSelectedArmy();
                     }
                 }
+            }
+        }
+    }
 
-                
+    public void LockOnTarget()
+    {
+        ////Lock on to the target
+        //if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
+        //{
+        //    cameraTargetController.LockOnTarget(hit.transform.position, 10);
+        //}
+        //else
+        //{
+        //    cameraTargetController.LockOnTarget(hit.transform, 20, true);
+        //}
+    }
+
+    public void HandleSelectionUnit()
+    {
+
+    }
+
+    public void SelectUnitArmy(Transform target)
+    {
+        selectedTransform = target.transform;
+        currentSelectedArmy = target.transform.GetComponent<UnitCondition>().unitArmy;
+
+        if (currentSelectedArmy.Count > 0)
+        {
+            foreach (var selectedUnit in currentSelectedArmy)
+            {
+                selectedUnit.isSelected = true;
+
+                if (selectedUnit.TryGetComponent(out Outline unitOutline))
+                    unitOutline.enabled = true;
+            }
+        }
+    }
+
+    public void ResetSelectedArmy()
+    {
+        if (currentSelectedArmy != null && currentSelectedArmy.Count > 0)
+        {
+            foreach (var selectedUnit in currentSelectedArmy)
+            {
+                selectedUnit.isSelected = false;
+
+                if (selectedUnit.TryGetComponent(out Outline unitOutline))
+                    unitOutline.enabled = false;
             }
         }
 
+        currentSelectedArmy = new List<UnitCondition>();
+        selectedTransform = null;
+        OnTargetSelected?.Invoke(null);
     }
 }

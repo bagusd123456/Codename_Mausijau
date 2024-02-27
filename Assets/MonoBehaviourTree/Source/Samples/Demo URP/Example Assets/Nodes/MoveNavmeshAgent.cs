@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using MBT;
+using UnityEngine.Serialization;
 
 namespace MBTExample
 {
@@ -19,6 +20,7 @@ namespace MBTExample
         public float updateInterval = 1f;
         private float time = 0;
 
+        public BoolReference commandBoolRef;
         public override void OnEnter()
         {
             time = 0;
@@ -58,7 +60,9 @@ namespace MBTExample
             // Check if agent is very close to destination
             if (agent.remainingDistance < stopDistance)
             {
-                return NodeResult.success;
+                //destination.Value = null;
+                //commandBoolRef.Value = false;
+                return NodeResult.failure;
             }
             // Check if there is any path (if not pending, it should be set)
             if (agent.hasPath)

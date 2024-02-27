@@ -162,6 +162,8 @@ GameObject:
   - component: {fileID: 294673219}
   - component: {fileID: 294673221}
   - component: {fileID: 294673220}
+  - component: {fileID: 294673223}
+  - component: {fileID: 294673224}
   m_Layer: 7
   m_Name: PlayerParentBT
   m_TagString: Untagged
@@ -335,13 +337,13 @@ MonoBehaviour:
   title: Number Condition
   rect:
     serializedVersion: 2
-    x: 40
+    x: -120
     y: 440
     width: 160
     height: 45
   parent: {fileID: 294673197}
   children:
-  - {fileID: 294673201}
+  - {fileID: 294673223}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -387,7 +389,7 @@ MonoBehaviour:
   title: Selector
   rect:
     serializedVersion: 2
-    x: 40
+    x: -120
     y: 280
     width: 160
     height: 45
@@ -413,7 +415,7 @@ MonoBehaviour:
   title: Calculate Distance Service
   rect:
     serializedVersion: 2
-    x: 40
+    x: -120
     y: 360
     width: 160
     height: 45
@@ -487,7 +489,7 @@ MonoBehaviour:
   title: Is Set Condition
   rect:
     serializedVersion: 2
-    x: 40
+    x: -120
     y: 200
     width: 160
     height: 45
@@ -499,7 +501,7 @@ MonoBehaviour:
   breakpoint: 0
   abort: 3
   invert: 0
-  type: 0
+  type: 2
   boolReference:
     useConstant: 0
     mode: 1
@@ -516,7 +518,7 @@ MonoBehaviour:
     useConstant: 0
     mode: 1
     blackboard: {fileID: 294673217}
-    key: waypointTarget
+    key: commandTarget
     constantValue: {fileID: 0}
 --- !u!114 &294673201
 MonoBehaviour:
@@ -533,11 +535,11 @@ MonoBehaviour:
   title: Move Navmesh Agent
   rect:
     serializedVersion: 2
-    x: 40
-    y: 520
+    x: -280
+    y: 600
     width: 160
     height: 45
-  parent: {fileID: 294673195}
+  parent: {fileID: 294673223}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -558,6 +560,12 @@ MonoBehaviour:
   agent: {fileID: 950505728}
   stopDistance: 2
   updateInterval: 1
+  commandBoolRef:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 294673217}
+    key: onCommand
+    constantValue: 0
 --- !u!114 &294673202
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -573,7 +581,7 @@ MonoBehaviour:
   title: Selector
   rect:
     serializedVersion: 2
-    x: 200
+    x: 120
     y: 120
     width: 160
     height: 45
@@ -600,7 +608,7 @@ MonoBehaviour:
   title: Player Command Service
   rect:
     serializedVersion: 2
-    x: 200
+    x: 120
     y: 40
     width: 160
     height: 45
@@ -631,12 +639,6 @@ MonoBehaviour:
     blackboard: {fileID: 294673217}
     key: onCommand
     constantValue: 0
-  targetToReset:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 294673217}
-    key: waypointTarget
-    constantValue: {fileID: 0}
 --- !u!114 &294673204
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -883,23 +885,17 @@ MonoBehaviour:
     blackboard: {fileID: 294673217}
     key: targetUnit
     constantValue: {fileID: 0}
-  selfCondition:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 294673217}
-    key: self
-    constantValue: {fileID: 0}
   onCommand:
     useConstant: 0
     mode: 0
     blackboard: {fileID: 294673217}
     key: onCommand
     constantValue: 0
-  commandTargetReference:
+  selfCondition:
     useConstant: 0
     mode: 1
     blackboard: {fileID: 294673217}
-    key: commandTarget
+    key: self
     constantValue: {fileID: 0}
 --- !u!114 &294673215
 MonoBehaviour:
@@ -916,7 +912,7 @@ MonoBehaviour:
   title: Root
   rect:
     serializedVersion: 2
-    x: 200
+    x: 120
     y: -40
     width: 160
     height: 45
@@ -938,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 294673214}
+  selectedEditorNode: {fileID: 294673224}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -1085,6 +1081,69 @@ MonoBehaviour:
     key: unitAttackRange
     constantValue: 0
   updateInterval: 0.7
+--- !u!114 &294673223
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294673188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: -120
+    y: 520
+    width: 160
+    height: 45
+  parent: {fileID: 294673195}
+  children:
+  - {fileID: 294673201}
+  - {fileID: 294673224}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &294673224
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294673188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a491dc0bc41ade74e85756aea423797c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Set Boolean
+  rect:
+    serializedVersion: 2
+    x: 20
+    y: 600
+    width: 160
+    height: 45
+  parent: {fileID: 294673223}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  source:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
+  destination:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 294673217}
+    key: onCommand
+    constantValue: 0
 --- !u!1 &371316700
 GameObject:
   m_ObjectHideFlags: 0
@@ -8897,15 +8956,15 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1553553841 stripped
+--- !u!114 &1553553858 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6984930532096905250, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6984930532096905256, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
   m_PrefabInstance: {fileID: 6984930532602620531}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2217e4d35c0c94ea02cf2166c17e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b95a918be8d9a4f9085201010bdec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1654938662
@@ -9860,6 +9919,22 @@ PrefabInstance:
       propertyPath: _targetCamera
       value: 
       objectReference: {fileID: 436557497}
+    - target: {fileID: 1276355155510914502, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276355155510914502, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.y
+      value: 282
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276355155510914503, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276355155510914503, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.y
+      value: 199
+      objectReference: {fileID: 0}
     - target: {fileID: 1276355155510914503, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
       propertyPath: onCommand.key
       value: onCommand
@@ -9884,6 +9959,14 @@ PrefabInstance:
       propertyPath: commandTargetReference.blackboard
       value: 
       objectReference: {fileID: 2005752385}
+    - target: {fileID: 1276355155510914504, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276355155510914504, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
+      propertyPath: rect.y
+      value: 119
+      objectReference: {fileID: 0}
     - target: {fileID: 1276355155510914521, guid: 5b8e3767bc7e91743acb51eea3981773, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
@@ -9905,30 +9988,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 599807872}
     m_Modifications:
-    - target: {fileID: 6984930532096905259, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: rect.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6984930532096905259, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: rect.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6984930532096905278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: onCommand.key
-      value: onCommand
-      objectReference: {fileID: 0}
-    - target: {fileID: 6984930532096905278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: onCommand.blackboard
+    - target: {fileID: 6984930532096905251, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: selectedEditorNode
       value: 
-      objectReference: {fileID: 1553553841}
-    - target: {fileID: 6984930532096905278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: commandTargetReference.key
-      value: commandTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 6984930532096905278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
-      propertyPath: commandTargetReference.blackboard
-      value: 
-      objectReference: {fileID: 1553553841}
+      objectReference: {fileID: 1553553858}
     - target: {fileID: 6984930532318026708, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: _targetCamera
       value: 
