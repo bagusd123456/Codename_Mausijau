@@ -199,6 +199,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         _agent.SetDestination(transform.position);
         CurrentMovement = MovementStates.None;
-        animationController.CurrentState = CurrentMovement;
+        //animationController.CurrentState = CurrentMovement;
     }
 }

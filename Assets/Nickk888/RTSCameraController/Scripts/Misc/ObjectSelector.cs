@@ -70,7 +70,10 @@ public class ObjectSelector : MonoBehaviour
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AlliedUnit"))
                     {
                         ResetSelectedArmy();
-                        SelectUnitArmy(hit.transform);
+                        if (hit.transform != null)
+                        {
+                            SelectUnitArmy(hit.transform);
+                        }
                     }
                     
                     //If not a unit, reset the selected transform

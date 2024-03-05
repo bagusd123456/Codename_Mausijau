@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using NaughtyAttributes;
 using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
     private UnitCondition _unitCondition;
+    public AnimationController animationController;
 
     public GameObject projectile;
     public Transform firePoint;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         _unitCondition = GetComponent<UnitCondition>();
+        animationController = GetComponent<AnimationController>();
     }
 
     // Update is called once per frame
@@ -23,6 +27,8 @@ public class CharacterAttack : MonoBehaviour
 
     public void Attack(Transform targetTransform)
     {
+        //animationController.CurrentState = MovementStates.Attack;
+        //_unitCondition.GetComponent<CharacterMovement>().LookToTarget(targetTransform.position);
         if (_unitCondition.unitData.attackType == BaseUnitData.AttackType.Melee)
         {
             LaunchMelee(targetTransform);

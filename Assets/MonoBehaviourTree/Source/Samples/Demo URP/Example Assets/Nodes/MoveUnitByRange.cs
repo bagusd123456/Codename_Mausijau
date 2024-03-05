@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 using MBT;
@@ -19,6 +20,8 @@ namespace MBTExample
         public float updateInterval = 1f;
         private float time = 0;
 
+        [Tooltip("Animation Handler")]
+        public CharacterMovement characterMovement;
         public override void OnEnter()
         {
             time = 0;
@@ -27,6 +30,9 @@ namespace MBTExample
                 agent.SetDestination(destinationVector3.Value);
             else
                 agent.SetDestination(destination.Value.position);
+
+            Vector3 targetLookPos = useVector3 ? destinationVector3.Value : destination.Value.position;
+            //characterMovement.LookToTarget(targetLookPos);
         }
         
         public override NodeResult Execute()
@@ -41,6 +47,8 @@ namespace MBTExample
                     agent.SetDestination(destinationVector3.Value);
                 else
                     agent.SetDestination(destination.Value.position);
+
+                
             }
             // Check if path is ready
             if (agent.pathPending)
@@ -65,6 +73,7 @@ namespace MBTExample
 
         public override void OnExit()
         {
+            agent.GetComponent<AnimationController>().CurrentState = MovementStates.Idle;
             agent.SetDestination(transform.position);
             agent.isStopped = true;
             // agent.ResetPath();

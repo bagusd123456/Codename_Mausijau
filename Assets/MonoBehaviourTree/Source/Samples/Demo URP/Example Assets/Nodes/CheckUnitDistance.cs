@@ -24,9 +24,9 @@ namespace MBTExample
             // Move as long as distance is greater than min. distance
             if (currentUnitGO != null)
             {
-                if (currentUnitGO.TryGetComponent(out UnitCondition targetUnit))
+                if (currentUnitGO.TryGetComponent(out UnitCondition currentUnit))
                 {
-                    if (!targetUnitGO.TryGetComponent(out UnitCondition currentUnit))
+                    if (!targetUnitGO.TryGetComponent(out UnitCondition targetUnit))
                     {
                         return false;
                     }

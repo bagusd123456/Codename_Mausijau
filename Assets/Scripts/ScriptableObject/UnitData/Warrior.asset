@@ -15,8 +15,8 @@ MonoBehaviour:
   unitId: 0
   unitName: Warrior
   baseHealth: 100
-  baseDamage: 5
   baseMoveSpeed: 5
   attackType: 0
+  baseAttackDamage: 2
   baseAttackSpeed: 2
-  baseAttackRange: 2
+  baseAttackRange: 5

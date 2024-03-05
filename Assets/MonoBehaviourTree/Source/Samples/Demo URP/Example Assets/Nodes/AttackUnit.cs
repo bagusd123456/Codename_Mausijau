@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using MBT;
 
@@ -35,7 +36,8 @@ namespace MBTExample
                     {
                         return NodeResult.failure;
                     }
-
+                    CharacterMovement characterMovement = attackingUnit.GetComponent<CharacterMovement>();
+                    characterMovement.LookToTarget(targetEnemy.transform.position);
                     attackingUnit.GetComponent<CharacterAttack>().Attack(targetEnemy.transform);
 
                     //targetEnemy.TakeDamage(damage);
@@ -47,7 +49,18 @@ namespace MBTExample
             }
             else
             {
+                AnimationController characterAnimation = attackUnit.Value.GetComponent<AnimationController>();
+                characterAnimation.CurrentState = MovementStates.Idle;
                 return NodeResult.failure;
+            }
+        }
+
+        public override void OnExit()
+        {
+            if (targetToAttack.Value == null)
+            {
+                AnimationController characterAnimation = attackUnit.Value.GetComponent<AnimationController>();
+                characterAnimation.CurrentState = MovementStates.Idle;
             }
         }
     }

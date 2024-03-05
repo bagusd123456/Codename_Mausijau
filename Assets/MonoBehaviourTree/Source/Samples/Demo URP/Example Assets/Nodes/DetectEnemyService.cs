@@ -30,10 +30,27 @@ namespace MBTExample
             }
             // Find target in radius and feed blackboard variable with results
             Collider[] colliders = Physics.OverlapSphere(transform.position, range, mask, QueryTriggerInteraction.Ignore);
-            if (colliders.Length > 0)
+            //Calculate distance to each target and choose the closest one
+            Collider closestTarget = null;
+            foreach (var enemyTarget in colliders)
             {
-                variableToSet.Value = colliders[0].transform;
-                enemyGameObject.Value = colliders[0].gameObject;
+                float distance = Vector3.Distance(transform.position, enemyTarget.transform.position);
+                if (closestTarget == null ||
+                    distance < Vector3.Distance(transform.position, closestTarget.transform.position))
+                {
+                    closestTarget = enemyTarget;
+                }
+            }
+
+            if (closestTarget != null)
+            {
+                variableToSet.Value = closestTarget.transform;
+                enemyGameObject.Value = closestTarget.gameObject;
+            }
+            else
+            {
+                variableToSet.Value = null;
+                enemyGameObject.Value = null;
             }
 
             if (enemyGameObject.Value == null) return;

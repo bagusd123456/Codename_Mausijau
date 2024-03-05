@@ -83,7 +83,7 @@ public class AI_Detection : MonoBehaviour
                 {
                     if (closestTarget.isActiveAndEnabled)
                     {
-                        characterMovement.LookToTarget(closestTarget.transform.position);
+                        //characterMovement.LookToTarget(closestTarget.transform.position);
 
                         closestTarget.GetComponent<AI_Detection>().ChangeStateToAttack(currentUnit);
                         currentUnit.Attack(closestTarget, currentUnit.unitData.baseAttackDamage);
@@ -117,7 +117,7 @@ public class AI_Detection : MonoBehaviour
         else if (currentState == DetectionState.MovingToTarget)
         {
             characterMovement.SetAnimation(MovementStates.Run);
-            characterMovement.MoveTo(targetPosition);
+            //characterMovement.MoveTo(targetPosition);
         }
 
         else if (currentState == DetectionState.FindEnemies)
@@ -136,7 +136,7 @@ public class AI_Detection : MonoBehaviour
                 }
 
                 characterMovement.SetAnimation(MovementStates.Run);
-                characterMovement.MoveTo(targetPosition);
+                //characterMovement.MoveTo(targetPosition);
                 targetPosition = CharacterMovement.GetTargetPositon(closestTarget.transform, minimumDistance, angle);
                 if (currentDistance < lastDistance)
                 {
@@ -240,7 +240,7 @@ public class AI_Detection : MonoBehaviour
     {
         currentState = DetectionState.Moving;
         targetPosition = target;
-        characterMovement.MoveTo(targetPosition);
+        //characterMovement.MoveTo(targetPosition);
     }
 
     public void ChangeStateToAttack(UnitCondition unitTarget)

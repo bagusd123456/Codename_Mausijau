@@ -26,6 +26,8 @@ public class CharacterMovement : MonoBehaviour
     private float _runSpeed = 4f;
     public float agentMoveSpeed;
 
+    public List<Transform> waypointsList = new List<Transform>();
+
     public MovementStates _currentMovement;
     public MovementStates CurrentMovement
     {
@@ -57,7 +59,7 @@ public class CharacterMovement : MonoBehaviour
         animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
 
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponentInChildren<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
         _unitCondition = GetComponent<UnitCondition>();
     }
@@ -65,7 +67,6 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         HandleMovementState();
-        HandleAnimation();
 
         // Confirm that the player is done navigating
         if (!_needToRotate && !IsNavigating && _currentMovement != MovementStates.None)
@@ -81,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
             if (Vector3.Dot(facingDirection, transform.forward) >= .99f)
             {
                 //_agent.SetDestination(_moveTarget);
-                animationController.CurrentState = CurrentMovement;
+                //animationController.CurrentState = CurrentMovement;
 
                 _needToRotate = false;
             }
@@ -107,9 +108,6 @@ public class CharacterMovement : MonoBehaviour
         {
             _currentMovement = MovementStates.None;
         }
-
-        if (animationController.isActiveAndEnabled)
-            animationController.CurrentState = CurrentMovement;
     }
 
     public void HandleAnimation()
@@ -131,7 +129,6 @@ public class CharacterMovement : MonoBehaviour
         //_agent.enabled = false;
         _agent.SetDestination(transform.position);
         CurrentMovement = MovementStates.None;
-        animationController.CurrentState = CurrentMovement;
     }
 
     public void SetAnimation(MovementStates moveState)
@@ -144,6 +141,8 @@ public class CharacterMovement : MonoBehaviour
         facingDirection = (targetPos.WithNewY(transform.position.y) - transform.position).normalized;
         _lookRotation = Quaternion.LookRotation(facingDirection, Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _rotateSpeed);
+
+        HandleAnimation();
     }
 
     public static Vector3 GetTargetPositon(Transform center, float radius = 2f, float angle = 1f)

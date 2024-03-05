@@ -8,9 +8,17 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    public enum CharacterStance
+    {
+        Normal,
+        Defensive,
+        Offensive
+    }
+
     public enum MovementStates
     {
         None,
+        Idle,
         Walk,
         Run,
         Attack
@@ -21,32 +29,68 @@ namespace Assets.Scripts
         public static AnimationController Instance;
 
         private MovementStates _currentState;
+        public CharacterStance characterStance
+        {
+            get => characterStance;
+            set
+            {
+                //Debug.Log($"Character Stance Set to: {value}");
+                switch (value)
+                {
+                    case CharacterStance.Normal:
+                        _animatorController.SetBool("isNormal", true);
+                        _animatorController.SetBool("isDefensive", false);
+                        _animatorController.SetBool("isOffensive", false);
+                        break;
+                    case CharacterStance.Defensive:
+                        _animatorController.SetBool("isNormal", false);
+                        _animatorController.SetBool("isDefensive", true);
+                        _animatorController.SetBool("isOffensive", false);
+                        break;
+                    case CharacterStance.Offensive:
+                        _animatorController.SetBool("isNormal", false);
+                        _animatorController.SetBool("isDefensive", false);
+                        _animatorController.SetBool("isOffensive", true);
+                        break;
+                }
+            }
+        }
         public MovementStates CurrentState
         {
             get => _currentState;
             set
             {
-                switch (value)
+                if (_animatorController == null)
                 {
-                    case MovementStates.None:
-                        _animatorController.SetBool("Walk", false);
-                        _animatorController.SetBool("Run", false);
-                        break;
-                    case MovementStates.Walk:
-                        _animatorController.SetBool("Walk", true);
-                        _animatorController.SetBool("Run", false);
-                        break;
-                    case MovementStates.Run:
-                        _animatorController.SetBool("Run", true);
-                        _animatorController.SetBool("Walk", false);
-                        break;
-                    case MovementStates.Attack:
-                        _animatorController.SetTrigger("Attack");
-                        _animatorController.SetBool("Walk", false);
-                        _animatorController.SetBool("Run", false);
-                        break;
+                    _currentState = value;
+                    return;
                 }
 
+                //Debug.Log($"Character MovementState Set To: {value}");
+                switch (value)
+                {
+
+                    case MovementStates.None:
+                        _animatorController.SetBool("isIdle", false);
+                        _animatorController.SetBool("isWalk", false);
+                        _animatorController.SetBool("isAttack", false);
+                        break;
+                    case MovementStates.Idle:
+                        _animatorController.SetBool("isIdle", true);
+                        _animatorController.SetBool("isWalk", false);
+                        _animatorController.SetBool("isAttack", false);
+                        break;
+                    case MovementStates.Walk:
+                        _animatorController.SetBool("isIdle", false);
+                        _animatorController.SetBool("isWalk", true);
+                        _animatorController.SetBool("isAttack", false);
+                        break;
+                    case MovementStates.Attack:
+                        _animatorController.SetBool("isIdle", false);
+                        _animatorController.SetBool("isWalk", false);
+                        _animatorController.SetBool("isAttack", true);
+                        break;
+                }
                 _currentState = value;
             }
         }
@@ -54,9 +98,23 @@ namespace Assets.Scripts
         public Animator _animatorController;
         public SpriteRenderer _spriteRenderer;
 
+        private Vector3 initialScale;
+        private void Awake()
+        {
+            initialScale = _spriteRenderer.gameObject.transform.localScale;
+        }
+
         public void FlipSprite(bool flip)
         {
-            _spriteRenderer.flipX = flip;
+            if (flip)
+            {
+                _spriteRenderer.gameObject.transform.localScale = new Vector3(-initialScale.x, initialScale.y, initialScale.z);
+            }
+            else
+            {
+                _spriteRenderer.gameObject.transform.localScale = initialScale;
+            }
+            //_spriteRenderer.flipX = flip;
         }
     }
 }
