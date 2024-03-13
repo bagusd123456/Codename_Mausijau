@@ -65,8 +65,8 @@ public class PlayerMovementController : MonoBehaviour
         }
         animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
-        _inputMapping.Default.Walk.performed += Walk;
-        _inputMapping.Default.Run.performed += Run;
+        //_inputMapping.Default.Walk.performed += Walk;
+        //_inputMapping.Default.Run.performed += Run;
 
         _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();

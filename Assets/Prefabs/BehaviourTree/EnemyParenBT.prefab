@@ -495,11 +495,12 @@ MonoBehaviour:
   agent: {fileID: 0}
   stopDistance: 1
   updateInterval: 1
+  characterMovement: {fileID: 0}
   commandBoolRef:
     useConstant: 0
     mode: 0
-    blackboard: {fileID: 0}
-    key: 
+    blackboard: {fileID: 6538033125622892563}
+    key: onCommand
     constantValue: 0
 --- !u!114 &6538033125622892557
 MonoBehaviour:
@@ -845,6 +846,7 @@ MonoBehaviour:
     key: unitAttackRange
     constantValue: 0
   updateInterval: 0.7
+  characterMovement: {fileID: 0}
 --- !u!114 &6538033125622893551
 MonoBehaviour:
   m_ObjectHideFlags: 0

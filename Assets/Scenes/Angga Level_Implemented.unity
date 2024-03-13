@@ -3877,6 +3877,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 697615720953075872, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: rect.x
       value: 715
@@ -10947,6 +10951,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (8)
@@ -11037,7 +11045,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -11060,6 +11068,10 @@ PrefabInstance:
     - target: {fileID: 349271062504953153, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.02828664
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
@@ -11147,7 +11159,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -11673,6 +11685,10 @@ PrefabInstance:
       propertyPath: rect.x
       value: -381
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit
@@ -11763,7 +11779,11 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003080546442065612, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: rect.y
+      value: 759
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -12672,6 +12692,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -12972,6 +12996,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -13666,11 +13694,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.366855
+      value: 7.656854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.206855
+      value: -8.206854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13686,7 +13714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137987408595, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.71
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137987408595, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13698,11 +13726,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.366855
+      value: 7.656854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.206855
+      value: -8.206854
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265802, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_Name
@@ -14456,6 +14484,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (6)
@@ -14546,7 +14578,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -15069,6 +15101,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (4)
@@ -15159,7 +15195,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -17430,6 +17466,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -18763,6 +18803,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (5)
@@ -18853,7 +18897,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -20365,6 +20409,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (3)
@@ -20455,7 +20503,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -20672,6 +20720,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -21733,6 +21785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -22157,6 +22213,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (2)
@@ -22247,7 +22307,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
@@ -22504,6 +22564,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -22707,6 +22771,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -23081,6 +23149,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 621566780}
     m_Modifications:
+    - target: {fileID: 316678169111359070, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670789329724392005, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -23409,6 +23481,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.02828664
       objectReference: {fileID: 0}
+    - target: {fileID: 2831885267553698855, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4883737044663052640, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Name
       value: Infantry_AlliedUnit (7)
@@ -23499,7 +23575,7 @@ PrefabInstance:
       objectReference: {fileID: 1937019285}
     - target: {fileID: 4883737044663052670, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}
       propertyPath: m_Radius
-      value: 1.2
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abc1e5eef1d8b14684efb343ef23910, type: 3}

@@ -19,4 +19,4 @@ MonoBehaviour:
   attackType: 0
   baseAttackDamage: 2
   baseAttackSpeed: 2
-  baseAttackRange: 5
+  baseAttackRange: 2
