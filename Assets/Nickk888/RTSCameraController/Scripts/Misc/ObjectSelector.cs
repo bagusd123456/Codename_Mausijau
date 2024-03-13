@@ -56,7 +56,7 @@ public class ObjectSelector : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //If the target is a platform, lock on to the platform
-                if (hit.transform.CompareTag("Platform"))
+                if (hit.transform.CompareTag("Platform") && currentSelectedArmy.Count > 0)
                 {
                     OnTargetSelected?.Invoke(hit.transform);
                     selectedTransform = hit.transform;

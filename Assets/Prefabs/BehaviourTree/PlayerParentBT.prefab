@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 3154860778473991590}
   - component: {fileID: 5823926195530017325}
   - component: {fileID: 136556465085646844}
+  - component: {fileID: 582076336431022737}
+  - component: {fileID: 4776163797165028813}
   m_Layer: 7
   m_Name: PlayerParentBT
   m_TagString: Untagged
@@ -115,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 0}
+  selectedEditorNode: {fileID: 7250234647377221834}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -177,7 +179,7 @@ MonoBehaviour:
     y: 280
     width: 160
     height: 45
-  parent: {fileID: 7250234647377221834}
+  parent: {fileID: 582076336431022737}
   children:
   - {fileID: 320165349424484640}
   behaviourTree: {fileID: 0}
@@ -677,13 +679,13 @@ MonoBehaviour:
   title: Detect Enemy Service
   rect:
     serializedVersion: 2
-    x: 500
-    y: 200
+    x: 563
+    y: 76
     width: 160
     height: 45
   parent: {fileID: 7250234647377221835}
   children:
-  - {fileID: 320165349424484643}
+  - {fileID: 582076336431022737}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -1185,3 +1187,57 @@ MonoBehaviour:
   animationController: {fileID: 0}
   characterStance: 2
   movementState: 4
+--- !u!114 &582076336431022737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320165349424484692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: 620
+    y: 200
+    width: 160
+    height: 45
+  parent: {fileID: 7250234647377221834}
+  children:
+  - {fileID: 320165349424484643}
+  - {fileID: 4776163797165028813}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &4776163797165028813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320165349424484692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8529ef3f73ea944b3851a0efe816ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Set Animation State
+  rect:
+    serializedVersion: 2
+    x: 760
+    y: 280
+    width: 160
+    height: 45
+  parent: {fileID: 582076336431022737}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  animationController: {fileID: 0}
+  characterStance: 0
+  movementState: 1
