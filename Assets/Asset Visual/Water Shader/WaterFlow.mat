@@ -112,8 +112,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _Distance: 1
     - _DstBlend: 0
-    - _Foam_Depth: 0.02
-    - _Foam_Noise_Scale: 3.07
+    - _Foam_Depth: 0.93
+    - _Foam_Noise_Scale: 0.88
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
