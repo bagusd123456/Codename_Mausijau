@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public List<UnitCondition> alliedUnit;
     public List<UnitCondition> enemyUnit;
 
+    public List<UnitArmy> alliedArmyList;
     private void Awake()
     {
         StartCoroutine(InitGame());
@@ -55,12 +56,64 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        UnitCondition.OnUnitDeath += RemoveUnit;
         OnGameStateChange += GameStateChangeHandler;
+        LevelUpPanelView.OnLevelUpTriggered += CheckNextCharacterLevelUp;
+    }
+
+    private void OnDisable()
+    {
+        UnitCondition.OnUnitDeath -= RemoveUnit;
+        OnGameStateChange -= GameStateChangeHandler;
+        LevelUpPanelView.OnLevelUpTriggered -= CheckNextCharacterLevelUp;
+    }
+
+    private void CheckNextCharacterLevelUp(int index)
+    {
+        if (index < alliedArmyList.Count)
+        {
+            ShowLevelUpPanel();
+        }
+        else
+        {
+            var levelUpPanel = FindObjectOfType<LevelUpPanelView>();
+            levelUpPanel.currentArmyIndex = 0;
+            levelUpPanel.gameObject.SetActive(false);
+        }
     }
 
     private void GameStateChangeHandler(Condition condition)
     {
-        Debug.Log($"GameState set to: {condition}");
+        //Debug.Log($"GameState set to: {condition}");
+
+        if (condition == Condition.AlliedWin)
+        {
+            ShowLevelUpPanel();
+        }
+    }
+
+    private void ShowLevelUpPanel()
+    {
+        var levelUpPanel = FindObjectOfType<LevelUpPanelView>(true);
+        
+        if (levelUpPanel != null)
+        {
+            levelUpPanel.gameObject.SetActive(true);
+            levelUpPanel.targetArmy = alliedArmyList[levelUpPanel.currentArmyIndex];
+            levelUpPanel.InitButton();
+            levelUpPanel.currentArmyIndex++;
+        }
+    }
+
+    [Button()]
+    public void TriggerWinCondition()
+    {
+        gameState = Condition.AlliedWin;
+    }
+
+    public void TriggerLoseCondition()
+    {
+        gameState = Condition.EnemyWin;
     }
 
     public IEnumerator InitGame()
@@ -88,31 +141,49 @@ public class GameManager : MonoBehaviour
         gameState = Condition.Running;
     }
 
+    //Get specific unit and delete it from the list
+    public void RemoveUnit(UnitCondition unit)
+    {
+        if (unit.gameObject.layer == LayerMask.NameToLayer("AlliedUnit"))
+        {
+            alliedUnit.Remove(unit);
+        }
+        else if (unit.gameObject.layer == LayerMask.NameToLayer("EnemyUnit"))
+        {
+            enemyUnit.Remove(unit);
+        }
+
+        if (alliedUnit.Count == 0)
+        {
+            gameState = Condition.EnemyWin;
+        }
+    }
+
     public void FixedUpdate()
     {
-        if (gameState == Condition.Running)
-        {
-            for (int i = 0; i < alliedUnit.Count; i++)
-            {
-                var unit = alliedUnit[i];
-                if (unit.isDead)
-                {
-                    alliedUnit.Remove(unit);
-                }
-            }
+        //if (gameState == Condition.Running)
+        //{
+        //    for (int i = 0; i < alliedUnit.Count; i++)
+        //    {
+        //        var unit = alliedUnit[i];
+        //        if (unit.isDead)
+        //        {
+        //            alliedUnit.Remove(unit);
+        //        }
+        //    }
 
-            for (int i = 0; i < enemyUnit.Count; i++)
-            {
-                var unit = enemyUnit[i];
-                if (unit.isDead)
-                {
-                    enemyUnit.Remove(unit);
-                }
-            }
-        }
-        else
-        {
-            //Debug.Log($"Winner is: {gameState}");
-        }
+        //    for (int i = 0; i < enemyUnit.Count; i++)
+        //    {
+        //        var unit = enemyUnit[i];
+        //        if (unit.isDead)
+        //        {
+        //            enemyUnit.Remove(unit);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    //Debug.Log($"Winner is: {gameState}");
+        //}
     }
 }

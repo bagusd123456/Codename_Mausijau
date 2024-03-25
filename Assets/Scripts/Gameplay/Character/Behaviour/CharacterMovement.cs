@@ -7,16 +7,12 @@ using UnityEngine.Serialization;
 
 public class CharacterMovement : MonoBehaviour
 {
-    private Transform currentTargetPosition;
-    private Transform lastTargetPosition;
-
     private AnimationController animationController;
 
     private NavMeshAgent _agent;
     private Rigidbody _rb;
     private UnitCondition _unitCondition;
 
-    public Vector3 _moveTarget = Vector3.zero;
     private Quaternion _lookRotation = Quaternion.identity;
     public Vector3 facingDirection = Vector3.zero;
     public bool _needToRotate = false;
@@ -24,7 +20,6 @@ public class CharacterMovement : MonoBehaviour
     private float _rotateSpeed = 10f;
     private float _walkSpeed = 2.5f;
     private float _runSpeed = 4f;
-    public float agentMoveSpeed;
 
     public List<Transform> waypointsList = new List<Transform>();
 
@@ -95,7 +90,6 @@ public class CharacterMovement : MonoBehaviour
         //Change the speed of the agent to match the unit's base speed
         _agent.speed = _unitCondition.unitData.baseMoveSpeed;
 
-        agentMoveSpeed = _agent.velocity.magnitude / _agent.speed;
         if (_agent.velocity.magnitude / _agent.speed >= 0.7f)
         {
             _currentMovement = MovementStates.Run;

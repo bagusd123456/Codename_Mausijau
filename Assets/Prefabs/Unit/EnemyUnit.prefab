@@ -102,8 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c589f733e2f8b4a829cb2c502a61f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
-  _runSpeed: 4
 --- !u!114 &1276355154296489557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +132,8 @@ MonoBehaviour:
   damageNumberPrefab: {fileID: 1259023133563206875, guid: bfd261065d2338f44bbfeaae314cb943, type: 3}
   currentHealth: 100
   isDead: 0
+  isSelected: 0
+  unitArmy: []
   timeBeforeAttack: -0.98323286
 --- !u!114 &1276355154296489563
 MonoBehaviour:
@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ddb4134cc6cfc409874228f412512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   projectile: {fileID: 4441500793158560533, guid: 240c7a09bba3f154892e2ebf548e2699, type: 3}
   firePoint: {fileID: 1276355154445849177}
 --- !u!136 &1276355154296489555
@@ -175,10 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveTarget: {x: 0, y: 0, z: 0}
   facingDirection: {x: 0, y: 0, z: 0}
   _needToRotate: 0
-  agentMoveSpeed: 0
+  waypointsList: []
   _currentMovement: 0
 --- !u!1 &1276355154445849176
 GameObject:
@@ -512,6 +514,18 @@ MonoBehaviour:
     blackboard: {fileID: 1276355155510914506}
     key: targetEnemy
     constantValue: {fileID: 0}
+  onCommand:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
+  selfCondition:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
 --- !u!114 &1276355155510914502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +829,13 @@ MonoBehaviour:
   agent: {fileID: 1276355154296489561}
   stopDistance: 1
   updateInterval: 1
+  characterMovement: {fileID: 0}
+  commandBoolRef:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
 --- !u!114 &1276355155510914521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,6 +1215,7 @@ MonoBehaviour:
     key: unitAttackRange
     constantValue: 0
   updateInterval: 0.7
+  characterMovement: {fileID: 0}
 --- !u!114 &1276355155510914614
 MonoBehaviour:
   m_ObjectHideFlags: 0

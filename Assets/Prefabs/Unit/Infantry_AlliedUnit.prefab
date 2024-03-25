@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 4883737044663052670}
   - component: {fileID: 4883737044663052665}
   - component: {fileID: 4883737044663052664}
+  - component: {fileID: 4883737044663052644}
   - component: {fileID: 4883737044663052667}
   - component: {fileID: 4883737044663052666}
   - component: {fileID: 4883737044663052645}
-  - component: {fileID: 4883737044663052644}
   - component: {fileID: 4883737044663052647}
   - component: {fileID: 4883737044663052671}
   - component: {fileID: 2831885267553698855}
@@ -91,6 +91,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &4883737044663052644
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883737044663052640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.4, z: 0}
 --- !u!114 &4883737044663052667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,8 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c589f733e2f8b4a829cb2c502a61f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
-  _runSpeed: 4
 --- !u!114 &4883737044663052666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,20 +159,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   timeBeforeAttack: -0.98323286
---- !u!136 &4883737044663052644
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883737044663052640}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.4, z: 0}
 --- !u!114 &4883737044663052647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,10 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveTarget: {x: 0, y: 0, z: 0}
   facingDirection: {x: 0, y: 0, z: 0}
   _needToRotate: 0
-  agentMoveSpeed: 0
   waypointsList: []
   _currentMovement: 0
 --- !u!114 &4883737044663052671
@@ -191,7 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ddb4134cc6cfc409874228f412512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   projectile: {fileID: 4441500793158560533, guid: 240c7a09bba3f154892e2ebf548e2699, type: 3}
   firePoint: {fileID: 4883737046577121106}
 --- !u!114 &2831885267553698855
@@ -1034,6 +1032,14 @@ PrefabInstance:
     - target: {fileID: 7865728278067164518, guid: 860fef4efd9bc2449b054c02364f44d0, type: 3}
       propertyPath: m_Bounds.m_Extent.z
       value: 1.8872015e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162383718071358416, guid: 860fef4efd9bc2449b054c02364f44d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9995999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162383718071358416, guid: 860fef4efd9bc2449b054c02364f44d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.02828664
       objectReference: {fileID: 0}
     - target: {fileID: 8344586270038473579, guid: 860fef4efd9bc2449b054c02364f44d0, type: 3}
       propertyPath: m_Enabled

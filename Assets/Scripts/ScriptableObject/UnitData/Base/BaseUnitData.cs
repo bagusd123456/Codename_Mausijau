@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,5 +26,11 @@ public class BaseUnitData : ScriptableObject
     public int baseAttackDamage = 2;
     public float baseAttackSpeed = 2;
     public float baseAttackRange = 2;
+    public CharacterStance characterStance;
 
+    [Header("Level Up Parameter")]
+    public List<BaseUnitData> levelUpUnitList = new List<BaseUnitData>();
+
+    [Header("Character Reference")]
+    public GameObject characterPrefab;
 }

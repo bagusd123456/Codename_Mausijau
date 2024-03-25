@@ -1,17 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using DamageNumbersPro;
+using NaughtyAttributes;
 using UnityEngine;
-
-public class CustomUnitData : BaseUnitData
-{
-    
-}
+using UnityEngine.Serialization;
 
 public class UnitCondition : MonoBehaviour
 {
-    public static Action OnUnitDeath;
+    public static Action<UnitCondition> OnUnitDeath;
     public Action<UnitCondition> OnUnitAttacked;
 
     private Outline outline;
@@ -25,14 +23,16 @@ public class UnitCondition : MonoBehaviour
     public bool isDead;
     [HideInInspector] 
     public bool isSelected;
-    [Space]
-    public List<UnitCondition> unitArmy = new List<UnitCondition>();
+
+    public UnitArmy unitParentArmy;
 
     [Header("Unit Attack")]
     public float timeBeforeAttack;
 
     void Awake()
     {
+        unitParentArmy = GetComponentInParent<UnitArmy>();
+
         outline = GetComponent<Outline>();
         InitUnitStats();
     }
@@ -41,6 +41,21 @@ public class UnitCondition : MonoBehaviour
     {
         if(timeBeforeAttack > 0)
             timeBeforeAttack -= Time.deltaTime;
+    }
+
+    [ContextMenu("Change Character Stance")]
+    public void ChangeCharacterStanceFromUnitData()
+    {
+        var animController = GetComponent<AnimationController>();
+        animController.SetCharacterStance(unitData.characterStance);
+    }
+
+    [Button()]
+    public void InitCharacterAnim()
+    {
+        var animController = GetComponent<AnimationController>();
+
+        animController.ChangeCharacterAnimator(unitData.characterPrefab);
     }
 
     public void InitUnitStats()
@@ -60,7 +75,7 @@ public class UnitCondition : MonoBehaviour
             currentHealth = 0;
             isDead = true;
 
-            OnUnitDeath?.Invoke();
+            OnUnitDeath?.Invoke(this);
             gameObject.SetActive(false);
         }
     }
@@ -101,4 +116,9 @@ public class UnitCondition : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, currentRadius);
         }
     }
+}
+
+public class CustomUnitData : BaseUnitData
+{
+
 }

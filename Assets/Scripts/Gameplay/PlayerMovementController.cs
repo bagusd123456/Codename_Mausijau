@@ -11,9 +11,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    private Transform lastTargetPosition;
-
-    private AnimationController animationController;
     private InputControls _inputMapping;
 
     private Camera _camera;
@@ -25,8 +22,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool _needToRotate = false;
 
     private float _rotateSpeed = 10f;
-    public float _walkSpeed = 2.5f;
-    public float _runSpeed = 4f;
 
     private CharacterMovement characterMovement;
 
@@ -63,7 +58,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             characterMovement = GetComponent<CharacterMovement>();
         }
-        animationController = GetComponent<AnimationController>();
         //Register listener events for inputs
         //_inputMapping.Default.Walk.performed += Walk;
         //_inputMapping.Default.Run.performed += Run;

@@ -107,7 +107,7 @@ public class ObjectSelector : MonoBehaviour
     public void SelectUnitArmy(Transform target)
     {
         selectedTransform = target.transform;
-        currentSelectedArmy = target.transform.GetComponent<UnitCondition>().unitArmy;
+        currentSelectedArmy = target.transform.GetComponent<UnitCondition>().unitParentArmy.unitList;
 
         if (currentSelectedArmy.Count > 0)
         {

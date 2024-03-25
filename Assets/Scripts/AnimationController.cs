@@ -116,5 +116,19 @@ namespace Assets.Scripts
             }
             //_spriteRenderer.flipX = flip;
         }
+
+        public void SetCharacterStance(CharacterStance stance)
+        {
+            characterStance = stance;
+        }
+
+        public void ChangeCharacterAnimator(GameObject charPrefab)
+        {
+            var tempAnim = _animatorController.gameObject;
+            var charClone = Instantiate(charPrefab, _spriteRenderer.transform);
+
+            _animatorController = charClone.GetComponent<Animator>();
+            Destroy(tempAnim);
+        }
     }
 }

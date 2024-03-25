@@ -235,8 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c589f733e2f8b4a829cb2c502a61f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2.5
-  _runSpeed: 4
 --- !u!114 &6984930533008278275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,10 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4812c2e3ab187448933cf982746f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveTarget: {x: 0, y: 0, z: 0}
   facingDirection: {x: 0, y: 0, z: 0}
   _needToRotate: 0
-  agentMoveSpeed: 0
   waypointsList: []
   _currentMovement: 0
 --- !u!114 &6984930533008278278
@@ -314,7 +310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ddb4134cc6cfc409874228f412512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   projectile: {fileID: 4441500793158560533, guid: 240c7a09bba3f154892e2ebf548e2699, type: 3}
   firePoint: {fileID: 6984930531764251947}
 --- !u!114 &316678169111359070

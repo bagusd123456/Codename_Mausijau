@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ac51e816505d5408aa367ae7e4a8ff, type: 3}
+  m_Name: Warrior_Defensive
+  m_EditorClassIdentifier: 
+  unitId: 0
+  unitName: Warrior Defensive
+  baseHealth: 100
+  baseMoveSpeed: 5
+  attackType: 0
+  baseAttackDamage: 2
+  baseAttackSpeed: 2
+  baseAttackRange: 2
+  characterStance: 1
+  levelUpUnitList:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: db3a017e59a13a94580fbaaea147801e, type: 2}
+  - {fileID: 11400000, guid: 55e0bdef4b3f99046a8c2227055d375b, type: 2}
+  characterPrefab: {fileID: 0}

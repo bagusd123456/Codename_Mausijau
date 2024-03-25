@@ -235,7 +235,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3789,7 +3789,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -5017,7 +5017,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5304301963771180950
 MonoBehaviour:
@@ -5031,4 +5031,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0615a7fbd7cec43bc50db9f640b6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileOwner: {fileID: 0}
+  target: {fileID: 0}
   damage: 0
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

@@ -8,12 +8,12 @@ using UnityEngine;
 public class SetAnimationStateLeaf : Leaf
 {
     public AnimationController animationController;
-    public CharacterStance characterStance;
     public MovementStates movementState;
+    //public CharacterStance characterStance;
     public override NodeResult Execute()
     {
         animationController.CurrentState = movementState;
-        animationController.characterStance = characterStance;
+        //animationController.characterStance = characterStance;
         return NodeResult.success;
     }
 }
