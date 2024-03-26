@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6984930533008278278}
   - component: {fileID: 316678169111359070}
   m_Layer: 7
-  m_Name: PlayerUnit
+  m_Name: Archer_AlliedUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   currentHealth: 100
   isDead: 0
   isSelected: 0
-  unitArmy: []
+  unitParentArmy: {fileID: 0}
   timeBeforeAttack: -0.98323286
 --- !u!136 &6984930533008278301
 CapsuleCollider:
@@ -278,10 +278,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.35
+  m_Height: 1.61
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!114 &6984930533008278302
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -76,7 +76,7 @@ public class CharacterAttack : MonoBehaviour
         float distance = Vector3.Distance(transform.position, targetPos);
         var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
         Vector3 direction = (targetPos - firePoint.position).normalized; // Calculate direction towards the target
-        float horizontalForce = Mathf.Sqrt(distance) * 2.2f; // Adjust horizontal force based on distance
+        float horizontalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust horizontal force based on distance
         float verticalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust vertical force based on distance
         Vector3 force = direction * horizontalForce + firePoint.up * verticalForce; // Combine horizontal and vertical forces
         projectileGO.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse); // Apply the adjusted force to the projectile

@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class LevelUpPanelView : MonoBehaviour
 {
     public static Action<int> OnLevelUpTriggered;
+    public List<BaseUnitData> unitDataList;
     public BaseUnitData unitData;
     public List<LevelUp_Button> levelUpButtonList = new List<LevelUp_Button>();
+    public List<UnitArmy> alliedToLevelUp = new List<UnitArmy>();
     public UnitArmy targetArmy;
 
     public int currentArmyIndex;

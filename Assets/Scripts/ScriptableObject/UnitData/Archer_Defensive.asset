@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35ac51e816505d5408aa367ae7e4a8ff, type: 3}
-  m_Name: Archer
+  m_Name: Archer_Defensive
   m_EditorClassIdentifier: 
   unitId: 1
-  unitName: Archer
+  unitName: Archer Defensive
   baseHealth: 85
   baseMoveSpeed: 2
   attackType: 1
   baseAttackDamage: 2
   baseAttackSpeed: 4
   baseAttackRange: 10
+  characterStance: 1
+  levelUpUnitList:
+  - {fileID: 11400000, guid: 3c5b8e640ea8339428d43b3393958099, type: 2}
+  - {fileID: 11400000, guid: e12cb9193a5ab464db4051a5682a51e5, type: 2}
+  - {fileID: 11400000}
+  characterPrefab: {fileID: 0}

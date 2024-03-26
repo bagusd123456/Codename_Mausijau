@@ -12,16 +12,4 @@ public class UnitArmy : MonoBehaviour
     {
         unitList = new List<UnitCondition>(GetComponentsInChildren<UnitCondition>());
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

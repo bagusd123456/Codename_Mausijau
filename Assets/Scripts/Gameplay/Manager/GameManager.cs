@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public enum Condition {Idle, Running, Paused, Busy, AlliedWin, EnemyWin, Draw}
 
     private bool _gameFinished = false;
-
+    public int enemyInsideBaseLimit = 10;
     [ReadOnly]
     public Condition s_gameState;
     public Condition gameState
@@ -49,14 +49,28 @@ public class GameManager : MonoBehaviour
     public List<UnitCondition> enemyUnit;
 
     public List<UnitArmy> alliedArmyList;
+    public static GameManager Instance { get; private set; }
+
     private void Awake()
     {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         StartCoroutine(InitGame());
     }
 
     private void OnEnable()
     {
         UnitCondition.OnUnitDeath += RemoveUnit;
+        UnitCondition.OnEnemyArrivedBase += EnemyArrivedBaseHandler;
         OnGameStateChange += GameStateChangeHandler;
         LevelUpPanelView.OnLevelUpTriggered += CheckNextCharacterLevelUp;
     }
@@ -64,6 +78,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         UnitCondition.OnUnitDeath -= RemoveUnit;
+        UnitCondition.OnEnemyArrivedBase -= EnemyArrivedBaseHandler;
         OnGameStateChange -= GameStateChangeHandler;
         LevelUpPanelView.OnLevelUpTriggered -= CheckNextCharacterLevelUp;
     }
@@ -72,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         if (index < alliedArmyList.Count)
         {
+            gameState = Condition.Paused;
             ShowLevelUpPanel();
         }
         else
@@ -79,6 +95,9 @@ public class GameManager : MonoBehaviour
             var levelUpPanel = FindObjectOfType<LevelUpPanelView>();
             levelUpPanel.currentArmyIndex = 0;
             levelUpPanel.gameObject.SetActive(false);
+
+            Time.timeScale = 1f;
+            gameState = Condition.Running;
         }
     }
 
@@ -100,6 +119,17 @@ public class GameManager : MonoBehaviour
         {
             levelUpPanel.gameObject.SetActive(true);
             levelUpPanel.targetArmy = alliedArmyList[levelUpPanel.currentArmyIndex];
+            BaseUnitData unitDataToUpgrade = levelUpPanel.unitDataList.Find(x => x == levelUpPanel.targetArmy.unitList[0].unitData);
+
+            if (unitDataToUpgrade == null)
+            {
+                foreach (var baseUnitData in levelUpPanel.targetArmy.unitList[0].unitData.levelUpUnitList)
+                {
+                    unitDataToUpgrade = levelUpPanel.unitDataList.Find(x => x == baseUnitData);
+                }
+            }
+
+            levelUpPanel.unitData = unitDataToUpgrade;
             levelUpPanel.InitButton();
             levelUpPanel.currentArmyIndex++;
         }
@@ -109,11 +139,13 @@ public class GameManager : MonoBehaviour
     public void TriggerWinCondition()
     {
         gameState = Condition.AlliedWin;
+        Debug.Log($"Ally Win....");
     }
 
     public void TriggerLoseCondition()
     {
         gameState = Condition.EnemyWin;
+        Debug.Log($"Enemy Win....");
     }
 
     public IEnumerator InitGame()
@@ -138,6 +170,13 @@ public class GameManager : MonoBehaviour
         unitChecked = true;
 
         yield return new WaitUntil(() => unitChecked);
+        Time.timeScale = 0f;
+        ShowLevelUpPanel();
+        SpawnerManager.Instance.SpawnWave();
+    }
+
+    public void StartGame()
+    {
         gameState = Condition.Running;
     }
 
@@ -148,7 +187,7 @@ public class GameManager : MonoBehaviour
         {
             alliedUnit.Remove(unit);
         }
-        else if (unit.gameObject.layer == LayerMask.NameToLayer("EnemyUnit"))
+        if (unit.gameObject.layer == LayerMask.NameToLayer("EnemyUnit"))
         {
             enemyUnit.Remove(unit);
         }
@@ -157,33 +196,34 @@ public class GameManager : MonoBehaviour
         {
             gameState = Condition.EnemyWin;
         }
+
+        if (enemyUnit.Count == 0)
+        {
+            //ShowLevelUpPanel();
+            int spawnIndex = SpawnerManager.Instance.currentWaveIndex;
+            //var canSpawnWave = SpawnerManager.Instance.enemyWave.Exists(x => x.waveNumber == spawnIndex);
+            var canSpawnWave = SpawnerManager.Instance.enemyWave.Count > spawnIndex;
+            if (canSpawnWave)
+            {
+                SpawnerManager.Instance.SpawnWave();
+                SpawnerManager.Instance.currentWaveIndex++;
+            }
+            else
+            {
+                TriggerWinCondition();
+            }
+        }
     }
 
-    public void FixedUpdate()
+    public void EnemyArrivedBaseHandler(UnitCondition unit)
     {
-        //if (gameState == Condition.Running)
-        //{
-        //    for (int i = 0; i < alliedUnit.Count; i++)
-        //    {
-        //        var unit = alliedUnit[i];
-        //        if (unit.isDead)
-        //        {
-        //            alliedUnit.Remove(unit);
-        //        }
-        //    }
-
-        //    for (int i = 0; i < enemyUnit.Count; i++)
-        //    {
-        //        var unit = enemyUnit[i];
-        //        if (unit.isDead)
-        //        {
-        //            enemyUnit.Remove(unit);
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    //Debug.Log($"Winner is: {gameState}");
-        //}
+        enemyUnit.Remove(unit);
+        unit.Dead();
+        enemyInsideBaseLimit--;
+        if (enemyInsideBaseLimit <= 0)
+        {
+            gameState = Condition.EnemyWin;
+            Debug.Log($"Enemy Win....");
+        }
     }
 }

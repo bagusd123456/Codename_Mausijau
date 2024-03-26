@@ -9,6 +9,7 @@ using UnityEngine.Serialization;
 
 public class UnitCondition : MonoBehaviour
 {
+    public static Action<UnitCondition> OnEnemyArrivedBase;
     public static Action<UnitCondition> OnUnitDeath;
     public Action<UnitCondition> OnUnitAttacked;
 
@@ -78,6 +79,13 @@ public class UnitCondition : MonoBehaviour
             OnUnitDeath?.Invoke(this);
             gameObject.SetActive(false);
         }
+    }
+
+    public void Dead()
+    {
+        currentHealth = 0;
+        isDead = true;
+        gameObject.SetActive(false);
     }
 
     public void Attack(UnitCondition targetUnit, int damageAmount)
