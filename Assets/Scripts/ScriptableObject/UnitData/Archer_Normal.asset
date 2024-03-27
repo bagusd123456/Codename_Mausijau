@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 1
   unitName: Archer Normal
-  baseHealth: 85
-  baseMoveSpeed: 2
+  baseHealth: 30
+  baseMoveSpeed: 3
   attackType: 1
   baseAttackDamage: 2
   baseAttackSpeed: 4

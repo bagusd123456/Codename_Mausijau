@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 1
   unitName: Archer Offensive
-  baseHealth: 65
-  baseMoveSpeed: 2
+  baseHealth: 55
+  baseMoveSpeed: 3
   attackType: 1
   baseAttackDamage: 8
   baseAttackSpeed: 3

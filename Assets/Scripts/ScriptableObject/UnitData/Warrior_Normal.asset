@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 0
   unitName: Warrior Normal
-  baseHealth: 100
-  baseMoveSpeed: 5
+  baseHealth: 50
+  baseMoveSpeed: 2
   attackType: 0
-  baseAttackDamage: 2
+  baseAttackDamage: 3
   baseAttackSpeed: 2
   baseAttackRange: 2
   characterStance: 0

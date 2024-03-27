@@ -15,7 +15,7 @@ MonoBehaviour:
   unitId: 0
   unitName: Pikeman Offensive
   baseHealth: 40
-  baseMoveSpeed: 2
+  baseMoveSpeed: 7
   attackType: 0
   baseAttackDamage: 10
   baseAttackSpeed: 1

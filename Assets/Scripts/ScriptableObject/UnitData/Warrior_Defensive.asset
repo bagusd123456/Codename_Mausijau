@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 0
   unitName: Warrior Defensive
-  baseHealth: 140
-  baseMoveSpeed: 5
+  baseHealth: 70
+  baseMoveSpeed: 2
   attackType: 0
   baseAttackDamage: 4
   baseAttackSpeed: 1

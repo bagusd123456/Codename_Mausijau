@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 0
   unitName: Pikeman Defensive
-  baseHealth: 80
-  baseMoveSpeed: 2
+  baseHealth: 60
+  baseMoveSpeed: 6
   attackType: 0
   baseAttackDamage: 4
   baseAttackSpeed: 2
