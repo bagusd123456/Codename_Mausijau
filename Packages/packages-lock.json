@@ -179,6 +179,16 @@
         "com.unity.terrain-tools": "4.0.3"
       }
     },
+    "com.unity.formats.alembic": {
+      "version": "2.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0",
+        "com.unity.modules.cloth": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.formats.fbx": {
       "version": "4.1.2",
       "depth": 1,
