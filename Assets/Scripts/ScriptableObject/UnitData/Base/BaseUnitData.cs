@@ -16,7 +16,7 @@ public class BaseUnitData : ScriptableObject
     [Header("Attribute Parameter")]
     public int baseHealth = 100;
     //public int baseArmor;
-    public int baseMoveSpeed = 5;
+    public float baseMoveSpeed = 5;
 
     //[Space]
     //public int baseSightRange = 2;
