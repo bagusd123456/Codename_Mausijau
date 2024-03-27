@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35ac51e816505d5408aa367ae7e4a8ff, type: 3}
-  m_Name: Warrior_Defensive
+  m_Name: Pikeman_Defensif
   m_EditorClassIdentifier: 
   unitId: 0
-  unitName: Warrior Defensive
-  baseHealth: 140
-  baseMoveSpeed: 5
+  unitName: Pikeman Defensive
+  baseHealth: 80
+  baseMoveSpeed: 2
   attackType: 0
   baseAttackDamage: 4
-  baseAttackSpeed: 1
+  baseAttackSpeed: 2
   baseAttackRange: 1
   characterStance: 1
   levelUpUnitList:
   - {fileID: 11400000}
-  - {fileID: 11400000, guid: db3a017e59a13a94580fbaaea147801e, type: 2}
-  - {fileID: 11400000, guid: 55e0bdef4b3f99046a8c2227055d375b, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000}
   characterPrefab: {fileID: 0}

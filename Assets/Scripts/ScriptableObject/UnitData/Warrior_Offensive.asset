@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitId: 0
   unitName: Warrior Offensive
-  baseHealth: 100
+  baseHealth: 80
   baseMoveSpeed: 5
   attackType: 0
-  baseAttackDamage: 2
-  baseAttackSpeed: 2
+  baseAttackDamage: 7
+  baseAttackSpeed: 3
   baseAttackRange: 2
   characterStance: 2
   levelUpUnitList:
