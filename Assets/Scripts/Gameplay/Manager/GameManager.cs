@@ -103,12 +103,7 @@ public class GameManager : MonoBehaviour
 
     private void GameStateChangeHandler(Condition condition)
     {
-        //Debug.Log($"GameState set to: {condition}");
-
-        if (condition == Condition.AlliedWin)
-        {
-            ShowLevelUpPanel();
-        }
+        
     }
 
     private void ShowLevelUpPanel()
@@ -138,12 +133,27 @@ public class GameManager : MonoBehaviour
     [Button()]
     public void TriggerWinCondition()
     {
+        var winPanel = FindObjectOfType<WinCondition_PanelView>(true);
+
+        if (winPanel != null)
+        {
+            winPanel.gameObject.SetActive(true);
+
+        }
+
         gameState = Condition.AlliedWin;
         Debug.Log($"Ally Win....");
     }
 
     public void TriggerLoseCondition()
     {
+        var losePanel = FindObjectOfType<LoseCondition_PanelView>(true);
+
+        if (losePanel != null)
+        {
+            losePanel.gameObject.SetActive(true);
+        }
+
         gameState = Condition.EnemyWin;
         Debug.Log($"Enemy Win....");
     }

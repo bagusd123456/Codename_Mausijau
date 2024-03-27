@@ -90,12 +90,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f471f7dcca42094ca0a3de92c074f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitDataList:
+  - {fileID: 11400000, guid: 5bad2a7e49626254aa372e958233f382, type: 2}
+  - {fileID: 11400000, guid: 3c5b8e640ea8339428d43b3393958099, type: 2}
+  - {fileID: 11400000, guid: e12cb9193a5ab464db4051a5682a51e5, type: 2}
+  - {fileID: 11400000, guid: d9c3d70ffa19bac45ba26f07ef4d8870, type: 2}
+  - {fileID: 11400000, guid: 1995f7840f2452b4ca01f0bf390c8079, type: 2}
+  - {fileID: 11400000, guid: 29fb35067e35ebc43bd2684263534563, type: 2}
+  - {fileID: 11400000, guid: accf12e6ef3d8d245bb986cafbf1e510, type: 2}
+  - {fileID: 11400000, guid: db3a017e59a13a94580fbaaea147801e, type: 2}
+  - {fileID: 11400000, guid: 55e0bdef4b3f99046a8c2227055d375b, type: 2}
   unitData: {fileID: 11400000, guid: db3a017e59a13a94580fbaaea147801e, type: 2}
   levelUpButtonList:
   - {fileID: 656274791621384465}
   - {fileID: 1990709609234124232}
   - {fileID: 1990709609561668373}
+  alliedToLevelUp: []
   targetArmy: {fileID: 0}
+  currentArmyIndex: 0
 --- !u!1 &3341766054012870570
 GameObject:
   m_ObjectHideFlags: 0
