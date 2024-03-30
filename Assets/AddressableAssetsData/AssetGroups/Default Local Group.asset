@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 056e38a9676ed654090e8e4a2c68fe84
+  m_SerializeEntries:
+  - m_GUID: 05f9fc1e24f321444b12b32783cf5c57
+    m_Address: Assets/_Game/UI/MainMenu/Credits_Panel/Credits_Panel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+  - m_GUID: e31ea4f04ba14434c95727243d9eb74b
+    m_Address: Assets/_Game/UI/MainMenu/Settings_Panel/Settings_Panel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3f78d45a1726e6e4b80894c227628e7d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6169e5ddb73ea4849a5d6d632155d93c, type: 2}
+    - {fileID: 11400000, guid: 93f5044a09e54a047b6f58cb8126325f, type: 2}

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public enum Condition {Idle, Running, Paused, Busy, AlliedWin, EnemyWin, Draw}
 
     private bool _gameFinished = false;
+    public bool showLevelUpOnStart = true;
     public int enemyInsideBaseLimit = 10;
     [ReadOnly]
     public Condition s_gameState;
@@ -181,8 +182,16 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitUntil(() => unitChecked);
         Time.timeScale = 0f;
-        ShowLevelUpPanel();
+        
         SpawnerManager.Instance.SpawnWave();
+
+        if (showLevelUpOnStart)
+            ShowLevelUpPanel();
+        else
+        {
+            Time.timeScale = 1f;
+            gameState = Condition.Running;
+        }
     }
 
     public void StartGame()

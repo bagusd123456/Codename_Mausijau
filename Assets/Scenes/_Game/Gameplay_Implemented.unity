@@ -923,6 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935fe213dddbf7541bf7728d0742051a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showLevelUpOnStart: 0
   enemyInsideBaseLimit: 10
   s_gameState: 0
   alliedUnit: []
@@ -12514,11 +12515,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.656854
+      value: 7.6568546
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137410515194, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.206854
+      value: -8.206855
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12546,11 +12547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.656854
+      value: 7.6568546
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138118368226, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.206854
+      value: -8.206855
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265802, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_Name
@@ -12566,7 +12567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265803, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265803, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalPosition.z
