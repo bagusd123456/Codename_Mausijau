@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void ShowLevelUpPanel()
+    public void ShowLevelUpPanel()
     {
         var levelUpPanel = FindObjectOfType<LevelUpPanelView>(true);
         

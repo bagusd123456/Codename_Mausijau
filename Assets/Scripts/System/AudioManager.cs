@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
+    public enum audioCategory { Master = 0, Music = 1, Effect = 2}
+
     public const string masterVolumeData = "masterVolume";
     public const string musicVolumeData = "musicVolume";
     public const string effectVolumeData = "effectVolume";
@@ -23,50 +26,95 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Assets")]
     private AudioClip[] audioTarget;
 
+    public AudioSettings audioSetting;
     public AudioLibrary audioLibrary;
     private void Awake()
     {
         audioTarget = Resources.LoadAll<AudioClip>("Uwu");
+        LoadSettingsFromJSON();
+        AssignSettingsFromData();
         // If there is an instance, and it's not me, delete myself.
 
         if (Instance != null && Instance != this)
         {
-            
             Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     private void OnEnable()
     {
-        OnPlaySFX += PlaySFX;
+        LoadSettingsFromJSON();
+        AssignSettingsFromData();
+
+        OnPlaySFX += PlaySoundEffect;
+        SceneManager.sceneLoaded += OnSceneLoadedHandler;
     }
 
     private void OnDisable()
     {
-        OnPlaySFX -= PlaySFX;
+        OnPlaySFX -= PlaySoundEffect;
+        SceneManager.sceneLoaded -= OnSceneLoadedHandler;
+    }
+
+    private void OnSceneLoadedHandler(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.buildIndex == 0)
+        {
+            ChangeMusic(audioLibrary.mainMenu_BGM);
+        }
+        else if (arg0.buildIndex == 1)
+        {
+            ChangeMusic(audioLibrary.level1_BGM);
+        }
+        else if (arg0.buildIndex == 2)
+        {
+            ChangeMusic(audioLibrary.level2_BGM);
+        }
+        else if (arg0.buildIndex == 3)
+        {
+            ChangeMusic(audioLibrary.level3_BGM);
+        }
+    }
+
+    public void ChangeMusic(AudioClip clip)
+    {
+        //Stop the music source from playing
+        musicSource.Stop();
+        //Change the music clip
+        musicSource.clip = clip;
+        //Play the music clip
+        musicSource.Play();
     }
 
     /// <summary>
     /// Set the master volume of the game.
     /// </summary>
     /// <param name="volume"></param>
-    public void SetMasterVolume(Slider volume)
+    public void SetMasterVolume(float value)
     {
-        audioMixer.SetFloat(masterVolumeData, volume.value);
+        audioMixer.SetFloat("MasterVolume", value);
     }
 
     /// <summary>
     /// Set the music volume of the game.
     /// </summary>
     /// <param name="volume"></param>
-    public void SetMusicVolume(Slider volume)
+    public void SetMusicVolume(float value)
     {
-        audioMixer.SetFloat(musicVolumeData, volume.value);
+        audioMixer.SetFloat("MusicVolume", value);
+    }
+    /// <summary>
+    /// Set the SFX volume of the game.
+    /// </summary>
+    /// <param name="volume"></param>
+    public void SetEffectVolume(float value)
+    {
+        audioMixer.SetFloat("EffectVolume", value);
     }
 
     public void ToggleMusic()
@@ -74,25 +122,16 @@ public class AudioManager : MonoBehaviour
         musicSource.mute = !musicSource.mute;
     }
 
-    public void ToggleSFX()
+    public void ToggleSoundEffect()
     {
         effectSource.mute = !effectSource.mute;
-    }
-
-    /// <summary>
-    /// Set the SFX volume of the game.
-    /// </summary>
-    /// <param name="volume"></param>
-    public void SetSFXVolume(Slider volume)
-    {
-        audioMixer.SetFloat(effectVolumeData, volume.value);
     }
 
     /// <summary>
     /// Play the SFX clip.
     /// </summary>
     /// <param name="sfxClip"></param>
-    public void PlaySFX(AudioClip sfxClip)
+    public void PlaySoundEffect(AudioClip sfxClip)
     {
         if(!effectSource.isPlaying)
             effectSource.PlayOneShot(sfxClip);
@@ -103,27 +142,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFXOneShot(AudioClip sfxClip)
+    public void PlaySoundEffectOneShot(AudioClip sfxClip)
     {
         effectSource.PlayOneShot(sfxClip);
     }
 
     public float GetMasterVolume()
     {
-        audioMixer.GetFloat(masterVolumeData, out float value);
+        audioMixer.GetFloat("MasterVolume", out float value);
         return value;
         //return audioMixer.GetFloat("masterVolume", out float value) ? value : 0;
     }
 
     public float GetMusicVolume()
     {
-        audioMixer.GetFloat(musicVolumeData, out float value);
+        audioMixer.GetFloat("MusicVolume", out float value);
         return value;
     }
 
-    public float GetSFXVolume()
+    public float GetEffectVolume()
     {
-        audioMixer.GetFloat(effectVolumeData, out float value);
+        audioMixer.GetFloat("EffectVolume", out float value);
         return value;
     }
 
@@ -141,7 +180,7 @@ public class AudioManager : MonoBehaviour
         {
             masterVolume = GetMasterVolume(),
             musicVolume = GetMusicVolume(),
-            sfxVolume = GetSFXVolume()
+            effectVolume = GetEffectVolume()
         };
 
         string json = JsonUtility.ToJson(data, true);
@@ -154,7 +193,7 @@ public class AudioManager : MonoBehaviour
         {
             masterVolume = 0.5f,
             musicVolume = 0.5f,
-            sfxVolume = 0.5f
+            effectVolume = 0.5f
         };
 
         string defaultDataJSON = JsonUtility.ToJson(defaultData, true);
@@ -163,14 +202,13 @@ public class AudioManager : MonoBehaviour
         return data;
     }
 
+    [ContextMenu("AssignSettingsFromData")]
     public void AssignSettingsFromData()
     {
-        float master = LoadSettingsFromJSON().masterVolume;
-        float bgm = LoadSettingsFromJSON().musicVolume;
-        float sfx = LoadSettingsFromJSON().sfxVolume;
-        audioMixer.SetFloat(masterVolumeData, master);
-        audioMixer.SetFloat(musicVolumeData, bgm);
-        audioMixer.SetFloat(effectVolumeData, sfx);
+        var data = LoadSettingsFromJSON();
+        SetMasterVolume(data.masterVolume);
+        SetMusicVolume(data.masterVolume);
+        SetEffectVolume(data.effectVolume);
     }
 
     /// <summary>
@@ -186,5 +224,5 @@ public class AudioSettings
 {
     public float masterVolume;
     public float musicVolume;
-    public float sfxVolume;
+    public float effectVolume;
 }

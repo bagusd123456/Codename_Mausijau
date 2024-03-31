@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -494,6 +498,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278274, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
@@ -817,6 +825,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278274, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
@@ -1146,6 +1158,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -1473,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -1784,6 +1804,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -2089,6 +2113,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278274, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
@@ -2414,6 +2442,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -2723,6 +2755,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278274, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984930533008278278, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}
+      propertyPath: useProjectileMovement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984930533008278279, guid: 399d7840620b0f947a1a74ad0d7f30d8, type: 3}

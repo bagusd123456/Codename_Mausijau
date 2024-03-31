@@ -12,14 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca3b9bd7b1c7fd4bbcc22356f67ebd0, type: 3}
   m_Name: AudioLibrary
   m_EditorClassIdentifier: 
-  bgmInGameClip: {fileID: 0}
-  bgmMainMenuClip: {fileID: 0}
-  bgmCutscene_GoodEndingClip: {fileID: 0}
-  bgmCutscene_BadEndingClip: {fileID: 0}
-  gameStartClip: {fileID: 0}
-  gameEndClip: {fileID: 0}
-  confirmClickClip: {fileID: 0}
-  declineClickClip: {fileID: 0}
-  interactionCorrectClip: {fileID: 0}
-  qteRollClip: {fileID: 0}
-  swipeTransitionClip: {fileID: 0}
+  mainMenu_BGM: {fileID: 8300000, guid: 7e0effbbae863844185d9a180d1b0acd, type: 3}
+  level1_BGM: {fileID: 8300000, guid: d9df17eba412cb046919c67e175f9736, type: 3}
+  level2_BGM: {fileID: 8300000, guid: 435fa5358bde4354d8d08f8fb60b84c9, type: 3}
+  level3_BGM: {fileID: 8300000, guid: 359acb353f5e7704c8e9fac4b0ecb82d, type: 3}

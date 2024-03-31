@@ -7,18 +7,12 @@ using UnityEngine;
 [Serializable]
 public class AudioLibrary : ScriptableObject
 {
-    [Header("Sound Library")]
-    public AudioClip bgmInGameClip;
-    public AudioClip bgmMainMenuClip;
-    public AudioClip bgmCutscene_GoodEndingClip;
-    public AudioClip bgmCutscene_BadEndingClip;
+    [Header("Music Library")]
+    public AudioClip mainMenu_BGM;
+    public AudioClip level1_BGM;
+    public AudioClip level2_BGM;
+    public AudioClip level3_BGM;
 
-    [Header("Sound Effect")]
-    public AudioClip gameStartClip;
-    public AudioClip gameEndClip;
-    public AudioClip confirmClickClip;
-    public AudioClip declineClickClip;
-    public AudioClip interactionCorrectClip;
-    public AudioClip qteRollClip;
-    public AudioClip swipeTransitionClip;
+    //[Header("Sound Effect Library")]
+    //public AudioClip gameStartClip;
 }

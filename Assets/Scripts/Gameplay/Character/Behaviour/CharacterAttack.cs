@@ -15,6 +15,7 @@ public class CharacterAttack : MonoBehaviour
     public GameObject projectile;
     public Transform firePoint;
 
+    public bool useProjectileMovement = true;
     private void Awake()
     {
         _unitCondition = GetComponent<UnitCondition>();
@@ -68,18 +69,29 @@ public class CharacterAttack : MonoBehaviour
         //Set the projectile to look at the target position
         firePoint.LookAt(targetPos);
 
+        var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
+
+        if (useProjectileMovement)
+        {
+            float distance = Vector3.Distance(transform.position, targetPos);
+            Vector3 direction = (targetPos - firePoint.position).normalized; // Calculate direction towards the target
+            float horizontalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust horizontal force based on distance
+            float verticalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust vertical force based on distance
+            Vector3 force = direction * horizontalForce + firePoint.up * verticalForce; // Combine horizontal and vertical forces
+            projectileGO.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse); // Apply the adjusted force to the projectile
+        }
+        else
+        {
+            //Apply force to the projectile to move towards the target position
+            projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * 10, ForceMode.Impulse);
+        }
+
+        #region Old Movement
         ////Set projectile launch force
         //float distance = Vector3.Distance(transform.position, targetPos);
         //var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
         //projectileGO.GetComponent<Rigidbody>().AddForce(firePoint.forward * (Mathf.Sqrt(distance) * 2.2f) + firePoint.up * (Mathf.Sqrt(distance) * 2.1f), ForceMode.Impulse);
-
-        float distance = Vector3.Distance(transform.position, targetPos);
-        var projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Vector3 direction = (targetPos - firePoint.position).normalized; // Calculate direction towards the target
-        float horizontalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust horizontal force based on distance
-        float verticalForce = Mathf.Sqrt(distance) * 2.1f; // Adjust vertical force based on distance
-        Vector3 force = direction * horizontalForce + firePoint.up * verticalForce; // Combine horizontal and vertical forces
-        projectileGO.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse); // Apply the adjusted force to the projectile
+        #endregion
 
         //Set Projectile Behaviour properties
         var projectileBehaviour = projectileGO.GetComponent<ProjectileBehaviour>();
