@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca3b9bd7b1c7fd4bbcc22356f67ebd0, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: 
+  bgmInGameClip: {fileID: 0}
+  bgmMainMenuClip: {fileID: 0}
+  bgmCutscene_GoodEndingClip: {fileID: 0}
+  bgmCutscene_BadEndingClip: {fileID: 0}
+  gameStartClip: {fileID: 0}
+  gameEndClip: {fileID: 0}
+  confirmClickClip: {fileID: 0}
+  declineClickClip: {fileID: 0}
+  interactionCorrectClip: {fileID: 0}
+  qteRollClip: {fileID: 0}
+  swipeTransitionClip: {fileID: 0}

@@ -38,6 +38,9 @@ GameObject:
   - component: {fileID: 6538033125622893550}
   - component: {fileID: 6538033125622893551}
   - component: {fileID: 4474686850804241081}
+  - component: {fileID: 5481232012144859688}
+  - component: {fileID: 4547951804970291061}
+  - component: {fileID: 1493961907403958829}
   m_Layer: 7
   m_Name: EnemyParenBT
   m_TagString: Untagged
@@ -94,6 +97,7 @@ MonoBehaviour:
   - {fileID: 6538033125622892554}
   - {fileID: 6538033125622893544}
   - {fileID: 6538033125622893551}
+  - {fileID: 5481232012144859688}
   masterBlackboard: {fileID: 0}
 --- !u!114 &6538033125622892560
 MonoBehaviour:
@@ -107,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 6538033125622892547}
+  selectedEditorNode: {fileID: 1493961907403958829}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -127,12 +131,12 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 180
-    y: 120
+    y: -40
     width: 160
     height: 45
   parent: {fileID: 0}
   children:
-  - {fileID: 6538033125622892574}
+  - {fileID: 4547951804970291061}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -155,7 +159,7 @@ MonoBehaviour:
     y: 200
     width: 160
     height: 45
-  parent: {fileID: 6538033125622892561}
+  parent: {fileID: 1493961907403958829}
   children:
   - {fileID: 6538033125622892575}
   behaviourTree: {fileID: 0}
@@ -893,3 +897,97 @@ MonoBehaviour:
     constantValue: {fileID: 0}
   characterMovement: {fileID: 0}
   index: -1
+--- !u!114 &5481232012144859688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538033125622892599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae15c5e6bcb1714080f2e8296c3d17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: isEnabled
+  val: 0
+--- !u!114 &4547951804970291061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538033125622892599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32da887a31e13364c81b39c66385a63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Game Start Check
+  rect:
+    serializedVersion: 2
+    x: 180
+    y: 40
+    width: 160
+    height: 45
+  parent: {fileID: 6538033125622892561}
+  children:
+  - {fileID: 1493961907403958829}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  interval: 1
+  randomDeviation: 0
+  callOnEnter: 1
+  gameStartedBool:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 6538033125622892563}
+    key: isEnabled
+    constantValue: 0
+--- !u!114 &1493961907403958829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538033125622892599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e3ec7de6cd444e984c2e7f68e42e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Set Condition
+  rect:
+    serializedVersion: 2
+    x: 180
+    y: 120
+    width: 160
+    height: 45
+  parent: {fileID: 4547951804970291061}
+  children:
+  - {fileID: 6538033125622892574}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 1
+  invert: 0
+  type: 0
+  boolReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 6538033125622892563}
+    key: isEnabled
+    constantValue: 0
+  objectReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  transformReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
