@@ -99,6 +99,7 @@ namespace EasyTransition
             yield return new WaitForSecondsRealtime(startDelay);
 
             onTransitionBegin?.Invoke();
+            Debug.Log($"Scene Loading....");
 
             GameObject template = Instantiate(transitionTemplate) as GameObject;
             template.GetComponent<Transition>().transitionSettings = transitionSettings;
@@ -111,8 +112,8 @@ namespace EasyTransition
 
             onTransitionCutPointReached?.Invoke();
 
-
-            SceneManager.LoadScene(sceneName);
+            var test = SceneManager.LoadSceneAsync(sceneName);
+            yield return new WaitUntil(() => test.isDone);
 
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
@@ -137,6 +138,7 @@ namespace EasyTransition
             onTransitionCutPointReached?.Invoke();
 
             SceneManager.LoadScene(sceneIndex);
+            Debug.Log($"Scene Loaded....");
 
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
@@ -165,6 +167,7 @@ namespace EasyTransition
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
             onTransitionEnd?.Invoke();
+            Debug.Log($"Scene Loaded....");
 
             runningTransition = false;
         }
