@@ -48,6 +48,9 @@ GameObject:
   - component: {fileID: 136556465085646844}
   - component: {fileID: 582076336431022737}
   - component: {fileID: 4776163797165028813}
+  - component: {fileID: 1222075838417956552}
+  - component: {fileID: 6952992132413801984}
+  - component: {fileID: 5309429328992782655}
   m_Layer: 7
   m_Name: PlayerParentBT
   m_TagString: Untagged
@@ -104,6 +107,7 @@ MonoBehaviour:
   - {fileID: 320165349424484659}
   - {fileID: 320165349424484663}
   - {fileID: 320165349424484621}
+  - {fileID: 6952992132413801984}
   masterBlackboard: {fileID: 0}
 --- !u!114 &320165349424484665
 MonoBehaviour:
@@ -117,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 7250234647377221834}
+  selectedEditorNode: {fileID: 1222075838417956552}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -137,7 +141,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 100
-    y: -40
+    y: -420
     width: 160
     height: 45
   parent: {fileID: 0}
@@ -388,7 +392,7 @@ MonoBehaviour:
     y: 200
     width: 160
     height: 45
-  parent: {fileID: 0}
+  parent: {fileID: 7250234647377221835}
   children:
   - {fileID: 5747729204131639427}
   behaviourTree: {fileID: 0}
@@ -679,8 +683,8 @@ MonoBehaviour:
   title: Detect Enemy Service
   rect:
     serializedVersion: 2
-    x: 563
-    y: 76
+    x: 620
+    y: 120
     width: 160
     height: 45
   parent: {fileID: 7250234647377221835}
@@ -736,10 +740,10 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 100
-    y: 120
+    y: -100
     width: 160
     height: 45
-  parent: {fileID: 7250234647377221832}
+  parent: {fileID: 1222075838417956552}
   children:
   - {fileID: 320165349424484657}
   - {fileID: 7250234647377221834}
@@ -763,12 +767,12 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 100
-    y: 40
+    y: -340
     width: 160
     height: 45
   parent: {fileID: 320165349424484646}
   children:
-  - {fileID: 7250234647377221835}
+  - {fileID: 5309429328992782655}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -846,7 +850,6 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   animationController: {fileID: 0}
-  characterStance: 0
   movementState: 2
 --- !u!114 &4239364444367581262
 MonoBehaviour:
@@ -1158,7 +1161,6 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   animationController: {fileID: 0}
-  characterStance: 2
   movementState: 2
 --- !u!114 &136556465085646844
 MonoBehaviour:
@@ -1185,7 +1187,6 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   animationController: {fileID: 0}
-  characterStance: 2
   movementState: 4
 --- !u!114 &582076336431022737
 MonoBehaviour:
@@ -1239,5 +1240,98 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   animationController: {fileID: 0}
-  characterStance: 0
   movementState: 1
+--- !u!114 &1222075838417956552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320165349424484692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e3ec7de6cd444e984c2e7f68e42e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Set Condition
+  rect:
+    serializedVersion: 2
+    x: 100
+    y: -180
+    width: 160
+    height: 45
+  parent: {fileID: 5309429328992782655}
+  children:
+  - {fileID: 7250234647377221835}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 3
+  invert: 0
+  type: 0
+  boolReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 320165349424484664}
+    key: isEnabled
+    constantValue: 0
+  objectReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  transformReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+--- !u!114 &6952992132413801984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320165349424484692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae15c5e6bcb1714080f2e8296c3d17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: isEnabled
+  val: 0
+--- !u!114 &5309429328992782655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320165349424484692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32da887a31e13364c81b39c66385a63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Game Start Check
+  rect:
+    serializedVersion: 2
+    x: 100
+    y: -260
+    width: 160
+    height: 45
+  parent: {fileID: 7250234647377221832}
+  children:
+  - {fileID: 1222075838417956552}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  interval: 1
+  randomDeviation: 0
+  callOnEnter: 1
+  gameStartedBool:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 320165349424484664}
+    key: isEnabled
+    constantValue: 0

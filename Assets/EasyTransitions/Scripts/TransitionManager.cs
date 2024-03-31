@@ -110,10 +110,10 @@ namespace EasyTransition
 
             yield return new WaitForSecondsRealtime(transitionTime);
 
-            onTransitionCutPointReached?.Invoke();
 
             var test = SceneManager.LoadSceneAsync(sceneName);
             yield return new WaitUntil(() => test.isDone);
+            onTransitionCutPointReached?.Invoke();
 
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 

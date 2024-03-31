@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private bool _gameFinished = false;
     public bool showLevelUpOnStart = true;
+    public bool startGameOnStart = false;
     public int enemyInsideBaseLimit = 10;
     [ReadOnly]
     public Condition s_gameState;
@@ -181,22 +182,27 @@ public class GameManager : MonoBehaviour
         unitChecked = true;
 
         yield return new WaitUntil(() => unitChecked);
-        Time.timeScale = 0f;
-        
+
         SpawnerManager.Instance.SpawnWave();
 
         if (showLevelUpOnStart)
             ShowLevelUpPanel();
-        else
+
+        if (startGameOnStart)
         {
-            Time.timeScale = 1f;
-            gameState = Condition.Running;
+            StartGame();
         }
     }
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
         gameState = Condition.Running;
+    }
+
+    public void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 
     //Get specific unit and delete it from the list
