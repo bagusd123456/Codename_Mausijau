@@ -26,10 +26,10 @@ public class Settings_PanelView : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.SetMasterVolume(masterVolumeSlider.value);
-            AudioManager.Instance.SetMusicVolume(musicVolumeSlider.value);
-            AudioManager.Instance.SetEffectVolume(effectVolumeSlider.value);
-            AudioManager.Instance.SaveSettingsToJSON();
+            //AudioManager.Instance.SetMasterVolume(masterVolumeSlider.value);
+            //AudioManager.Instance.SetMusicVolume(musicVolumeSlider.value);
+            //AudioManager.Instance.SetEffectVolume(effectVolumeSlider.value);
+            //AudioManager.Instance.SaveSettingsToJSON();
         }
     }
 }

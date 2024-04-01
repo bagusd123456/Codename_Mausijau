@@ -12,9 +12,9 @@ public class AudioManager : MonoBehaviour
 {
     public enum audioCategory { Master = 0, Music = 1, Effect = 2}
 
-    public const string masterVolumeData = "masterVolume";
-    public const string musicVolumeData = "musicVolume";
-    public const string effectVolumeData = "effectVolume";
+    public const string masterVolume = "MasterVolume";
+    public const string musicVolume = "MusicVolume";
+    public const string effectVolume = "EffectVolume";
     public static AudioManager Instance { get; private set; }
     public static Action<AudioClip> OnPlaySFX;
 
@@ -31,8 +31,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         audioTarget = Resources.LoadAll<AudioClip>("Uwu");
-        LoadSettingsFromJSON();
-        AssignSettingsFromData();
+        
         // If there is an instance, and it's not me, delete myself.
 
         if (Instance != null && Instance != this)
@@ -46,9 +45,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        AssignSettingsFromData();
+    }
+
     private void OnEnable()
     {
-        LoadSettingsFromJSON();
         AssignSettingsFromData();
 
         OnPlaySFX += PlaySoundEffect;
@@ -207,7 +210,7 @@ public class AudioManager : MonoBehaviour
     {
         var data = LoadSettingsFromJSON();
         SetMasterVolume(data.masterVolume);
-        SetMusicVolume(data.masterVolume);
+        SetMusicVolume(data.musicVolume);
         SetEffectVolume(data.effectVolume);
     }
 
