@@ -22,7 +22,7 @@ MonoBehaviour:
   baseAttackRange: 2
   characterStance: 2
   levelUpUnitList:
-  - {fileID: 11400000}
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 1995f7840f2452b4ca01f0bf390c8079, type: 2}
+  - {fileID: 11400000, guid: d9c3d70ffa19bac45ba26f07ef4d8870, type: 2}
   - {fileID: 11400000}
   characterPrefab: {fileID: 0}

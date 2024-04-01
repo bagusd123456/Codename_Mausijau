@@ -23,6 +23,6 @@ MonoBehaviour:
   characterStance: 1
   levelUpUnitList:
   - {fileID: 11400000}
-  - {fileID: 11400000}
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: d9c3d70ffa19bac45ba26f07ef4d8870, type: 2}
+  - {fileID: 11400000, guid: 29fb35067e35ebc43bd2684263534563, type: 2}
   characterPrefab: {fileID: 0}
