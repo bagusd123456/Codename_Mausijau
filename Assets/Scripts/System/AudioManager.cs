@@ -194,9 +194,9 @@ public class AudioManager : MonoBehaviour
     {
         var defaultData = new AudioSettings()
         {
-            masterVolume = 0.5f,
-            musicVolume = 0.5f,
-            effectVolume = 0.5f
+            masterVolume = -20f,
+            musicVolume = -20f,
+            effectVolume = -20f
         };
 
         string defaultDataJSON = JsonUtility.ToJson(defaultData, true);
