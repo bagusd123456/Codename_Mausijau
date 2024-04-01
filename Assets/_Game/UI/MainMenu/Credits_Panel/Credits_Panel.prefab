@@ -590,7 +590,6 @@ GameObject:
   - component: {fileID: 7229482332799735245}
   - component: {fileID: 7229482332799735244}
   - component: {fileID: 7229482332799735234}
-  - component: {fileID: 7229482332799735235}
   m_Layer: 0
   m_Name: Credits_Panel
   m_TagString: Untagged
@@ -691,22 +690,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!111 &7229482332799735235
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7229482332799735246}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1e8fa43f2f435e44f9f67243665203f1, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 1e8fa43f2f435e44f9f67243665203f1, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!1 &7229482332845740338
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,8 @@ public class MainMenu_PanelView : MonoBehaviour
     public Button creditButton;
     public Button settingButton;
     public Button quitButton;
+
+    public PlayableDirector lastPlayableDirector;
     public void LoadLevel(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);
@@ -47,7 +50,23 @@ public class MainMenu_PanelView : MonoBehaviour
         foreach (var item in playableDirectorList)
         {
             item.Stop();
+            //item.RebuildGraph();
         }
-        director.Play();
+
+        PlayableDirector directorToPlay = director;
+
+        if (lastPlayableDirector != null)
+        {
+            //check last director index in list
+            int index = playableDirectorList.IndexOf(director);
+            int lastIndex = playableDirectorList.IndexOf(lastPlayableDirector);
+            //if current index is less than last Index, get director from list contains name of current director
+            if (index < lastIndex)
+            {
+                directorToPlay = playableDirectorList.FirstOrDefault(x=> x.name.Contains(director.name));
+            }
+        }
+
+        directorToPlay.Play();
     }
 }
