@@ -26,3 +26,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9c3d70ffa19bac45ba26f07ef4d8870, type: 2}
   - {fileID: 11400000, guid: 29fb35067e35ebc43bd2684263534563, type: 2}
   characterPrefab: {fileID: 0}
+  levelUpCardSprite: {fileID: 21300000, guid: 27edb0d3224c2594d8324b5ce3b8d2b7, type: 3}
+  levelUpCardSpriteHighlighted: {fileID: 21300000, guid: 4e042c476363a254ebeb406068e708d2, type: 3}
