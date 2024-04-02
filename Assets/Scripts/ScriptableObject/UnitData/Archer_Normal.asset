@@ -22,7 +22,8 @@ MonoBehaviour:
   baseAttackRange: 10
   characterStance: 0
   levelUpUnitList:
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: e12cb9193a5ab464db4051a5682a51e5, type: 2}
   - {fileID: 11400000, guid: 5bad2a7e49626254aa372e958233f382, type: 2}
   characterPrefab: {fileID: 0}
+  levelUpCardSprite: {fileID: 0}
+  levelUpCardSpriteHighlighted: {fileID: 0}

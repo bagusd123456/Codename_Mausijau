@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,14 +11,14 @@ public class LevelUp_Button : MonoBehaviour
     public TMP_Text descriptionText_TMP;
     public Image levelUp_Image;
     public Button levelUp_Button;
-    // Start is called before the first frame update
-    void Start()
+
+    public BaseUnitData unitData;
+    private void OnEnable()
     {
-        
+        //InitButton();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
         
     }

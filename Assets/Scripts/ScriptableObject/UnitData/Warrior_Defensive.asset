@@ -23,7 +23,6 @@ MonoBehaviour:
   characterStance: 1
   levelUpUnitList:
   - {fileID: 11400000}
-  - {fileID: 11400000, guid: db3a017e59a13a94580fbaaea147801e, type: 2}
   - {fileID: 11400000, guid: 55e0bdef4b3f99046a8c2227055d375b, type: 2}
   characterPrefab: {fileID: 0}
   levelUpCardSprite: {fileID: 21300000, guid: 5b1078a405eca344e9c809698ea7d15a, type: 3}

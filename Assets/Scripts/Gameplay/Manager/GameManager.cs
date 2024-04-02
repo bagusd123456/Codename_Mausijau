@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public enum State {NotInitialized, Initialized, Busy, Error}
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowLevelUpPanel()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         var levelUpPanel = FindObjectOfType<LevelUpPanelView>(true);
         
         if (levelUpPanel != null)

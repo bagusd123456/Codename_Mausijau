@@ -24,6 +24,12 @@ public class LevelUpPanelView : MonoBehaviour
     {
         for (int i = 0; i < levelUpButtonList.Count; i++)
         {
+            if (i >= unitData.levelUpUnitList.Count)
+            {
+                levelUpButtonList[i].gameObject.SetActive(false);
+                continue;
+            }
+
             var levelUpData = unitData.levelUpUnitList[i];
             levelUpButtonList[i].InitButton(unitData.levelUpUnitList[i]);
 
