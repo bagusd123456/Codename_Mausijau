@@ -19,7 +19,7 @@ MonoBehaviour:
   attackType: 0
   baseAttackDamage: 3
   baseAttackSpeed: 3
-  baseAttackRange: 1
+  baseAttackRange: 1.5
   characterStance: 0
   levelUpUnitList: []
   characterPrefab: {fileID: 0}
