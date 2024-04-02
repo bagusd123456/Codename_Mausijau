@@ -33,4 +33,8 @@ public class BaseUnitData : ScriptableObject
 
     [Header("Character Reference")]
     public GameObject characterPrefab;
+
+    [Header("LevelUp Card Sprite")]
+    public Sprite levelUpCardSprite;
+    public Sprite levelUpCardSpriteHighlighted;
 }

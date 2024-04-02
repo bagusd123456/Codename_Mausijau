@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private bool _gameFinished = false;
     public bool showLevelUpOnStart = true;
     public bool startGameOnStart = false;
+    public bool forceLoseCondition = false;
     public int enemyInsideBaseLimit = 10;
     [ReadOnly]
     public Condition s_gameState;
@@ -135,12 +136,22 @@ public class GameManager : MonoBehaviour
     [Button()]
     public void TriggerWinCondition()
     {
+        if (forceLoseCondition)
+        {
+            var losePanel = FindObjectOfType<LoseCondition_PanelView>(true);
+            if (losePanel != null)
+            {
+                losePanel.gameObject.SetActive(true);
+            }
+            gameState = Condition.EnemyWin;
+            return;
+        }
+
         var winPanel = FindObjectOfType<WinCondition_PanelView>(true);
 
         if (winPanel != null)
         {
             winPanel.gameObject.SetActive(true);
-
         }
 
         gameState = Condition.AlliedWin;
@@ -219,7 +230,7 @@ public class GameManager : MonoBehaviour
 
         if (alliedUnit.Count == 0)
         {
-            gameState = Condition.EnemyWin;
+            TriggerLoseCondition();
         }
 
         if (enemyUnit.Count == 0)
@@ -247,7 +258,7 @@ public class GameManager : MonoBehaviour
         enemyInsideBaseLimit--;
         if (enemyInsideBaseLimit <= 0)
         {
-            gameState = Condition.EnemyWin;
+            TriggerLoseCondition();
             Debug.Log($"Enemy Win....");
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
@@ -107,6 +108,7 @@ public class RTSCameraTargetController : MonoBehaviour
     private bool isDragging;
     private bool isSideZoneMoving;
     private bool isLockedOnTarget;
+    private bool isActive;
 
     bool IsMouseOverGameWindow { get { return !(0 > Input.mousePosition.x || 0 > Input.mousePosition.y || Screen.width < Input.mousePosition.x || Screen.height < Input.mousePosition.y); } }
 
@@ -118,6 +120,21 @@ public class RTSCameraTargetController : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChange += OnGameStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChange -= OnGameStateChange;
+    }
+
+    private void OnGameStateChange(GameManager.Condition obj)
+    {
+        isActive = obj == GameManager.Condition.Running || obj != GameManager.Condition.Idle;
     }
 
     private void Start() 
@@ -135,6 +152,12 @@ public class RTSCameraTargetController : MonoBehaviour
 
     void Update()
     {
+        if (!isActive)
+        {
+            Cursor.visible = true;
+            return;
+        }
+
         Vector3 vectorChange = Vector3.zero;
         Vector3 mousePos = Input.mousePosition;
 

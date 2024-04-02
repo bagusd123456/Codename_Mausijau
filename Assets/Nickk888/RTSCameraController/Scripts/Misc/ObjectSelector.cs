@@ -17,14 +17,32 @@ public class ObjectSelector : MonoBehaviour
     public Transform selectedTransform;
     public List<UnitCondition> currentSelectedArmy = new List<UnitCondition>();
 
+    public bool isActive;
     public static Transform currentTargetPosition;
     void Start()
     {
         mainCam = Camera.main;
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChange += OnGameStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChange -= OnGameStateChange;
+    }
+
+    private void OnGameStateChange(GameManager.Condition obj)
+    {
+        isActive = obj == GameManager.Condition.Running;
+    }
+
     void Update()
     {
+        if(!isActive) return;
+
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
