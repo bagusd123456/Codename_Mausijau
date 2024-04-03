@@ -188,16 +188,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowFinalCutscene()
     {
-        var dialogue = FindObjectOfType<DialogueRunner>();
-        if (dialogue.IsDialogueRunning) return;
-        finalCutscene.SetActive(true);
-
-        dialogue.StartDialogue("Cutscene4Script");
-        dialogue.onDialogueComplete.RemoveAllListeners();
-        dialogue.onDialogueComplete.AddListener(() =>
-        {
-            TransitionManager.Instance().Transition("MainMenu", transition, 0f);
-        });
+        TransitionManager.Instance().Transition("Cutscene_Level3Final", transition, 0f);
     }
 
     public IEnumerator InitGame()

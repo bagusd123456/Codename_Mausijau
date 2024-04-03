@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_Game/Gameplay_Level3.unity
     guid: 74c2b24dc9b76544ca5e2ed2a2a1bfb6
+  - enabled: 1
+    path: Assets/Scenes/_Game/Cutscene_Level3Final.unity
+    guid: 02d88837aeee06f4f8e88117a8a904b6
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: aeb17c1d512cae045be5607f93b97ac9, type: 2}
