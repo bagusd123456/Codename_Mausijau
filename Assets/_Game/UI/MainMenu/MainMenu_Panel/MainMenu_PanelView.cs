@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ public class MainMenu_PanelView : MonoBehaviour
     public Button quitButton;
 
     public PlayableDirector lastPlayableDirector;
+
+    public int currentPageIndex;
+    public int currentIndex;
+    public int lastIndex;
     public void LoadLevel(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);
@@ -58,15 +63,17 @@ public class MainMenu_PanelView : MonoBehaviour
         if (lastPlayableDirector != null)
         {
             //check last director index in list
-            int index = playableDirectorList.IndexOf(director);
-            int lastIndex = playableDirectorList.IndexOf(lastPlayableDirector);
+            currentIndex = playableDirectorList.IndexOf(director);
+            lastIndex = playableDirectorList.IndexOf(lastPlayableDirector);
             //if current index is less than last Index, get director from list contains name of current director
-            if (index < lastIndex)
+            if (currentIndex > lastIndex)
             {
                 directorToPlay = playableDirectorList.FirstOrDefault(x=> x.name.Contains(director.name));
             }
         }
 
         directorToPlay.Play();
+        lastPlayableDirector = directorToPlay;
+
     }
 }

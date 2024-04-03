@@ -140,12 +140,7 @@ public class GameManager : MonoBehaviour
     {
         if (forceLoseCondition)
         {
-            var losePanel = FindObjectOfType<LoseCondition_PanelView>(true);
-            if (losePanel != null)
-            {
-                losePanel.gameObject.SetActive(true);
-            }
-            gameState = Condition.EnemyWin;
+            TriggerLoseCondition();
             return;
         }
 
