@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyTransition;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Yarn.Unity;
 
 public enum State {NotInitialized, Initialized, Busy, Error}
 public class GameManager : MonoBehaviour
@@ -17,6 +21,8 @@ public class GameManager : MonoBehaviour
     public bool showLevelUpOnStart = true;
     public bool startGameOnStart = false;
     public bool forceLoseCondition = false;
+    public bool showFinalCutscene = false;
+    public GameObject finalCutscene;
     public int enemyInsideBaseLimit = 10;
     [ReadOnly]
     public Condition s_gameState;
@@ -53,6 +59,11 @@ public class GameManager : MonoBehaviour
     public List<UnitCondition> enemyUnit;
 
     public List<UnitArmy> alliedArmyList;
+
+    public GameObject winPanel;
+    public GameObject losePanel;
+
+    public TransitionSettings transition;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -144,7 +155,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        var winPanel = FindObjectOfType<WinCondition_PanelView>(true);
+        //var winPanel = FindObjectOfType<WinCondition_PanelView>(true);
 
         if (winPanel != null)
         {
@@ -155,17 +166,38 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Ally Win....");
     }
 
+    [Button()]
     public void TriggerLoseCondition()
     {
-        var losePanel = FindObjectOfType<LoseCondition_PanelView>(true);
+        if (gameState == Condition.EnemyWin) return;
 
+        gameState = Condition.EnemyWin;
+        Debug.Log($"Enemy Win....");
+
+        //var losePanel = FindObjectOfType<LoseCondition_PanelView>(true);
+        if (showFinalCutscene)
+        {
+            ShowFinalCutscene();
+            return;
+        }
         if (losePanel != null)
         {
             losePanel.gameObject.SetActive(true);
         }
+    }
 
-        gameState = Condition.EnemyWin;
-        Debug.Log($"Enemy Win....");
+    public void ShowFinalCutscene()
+    {
+        var dialogue = FindObjectOfType<DialogueRunner>();
+        if (dialogue.IsDialogueRunning) return;
+        finalCutscene.SetActive(true);
+
+        dialogue.StartDialogue("Cutscene4Script");
+        dialogue.onDialogueComplete.RemoveAllListeners();
+        dialogue.onDialogueComplete.AddListener(() =>
+        {
+            TransitionManager.Instance().Transition("MainMenu", transition, 0f);
+        });
     }
 
     public IEnumerator InitGame()
@@ -256,7 +288,6 @@ public class GameManager : MonoBehaviour
         if (enemyInsideBaseLimit <= 0)
         {
             TriggerLoseCondition();
-            Debug.Log($"Enemy Win....");
         }
     }
 }

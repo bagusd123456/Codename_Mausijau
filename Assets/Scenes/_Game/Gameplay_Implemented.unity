@@ -934,6 +934,9 @@ MonoBehaviour:
   - {fileID: 599807873}
   - {fileID: 621566781}
   - {fileID: 1937131624}
+  winPanel: {fileID: 7611232878893233476}
+  losePanel: {fileID: 3646885261874314638}
+  transition: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
 --- !u!1001 &41326453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25145,6 +25148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d892d7758fe1fe4f8bd4230797e9cdf, type: 3}
+--- !u!1 &3646885261874314638 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3646885260810862225, guid: 0d892d7758fe1fe4f8bd4230797e9cdf, type: 3}
+  m_PrefabInstance: {fileID: 3646885261874314637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3728648464807522169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25629,6 +25637,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0607c91e2f843040adff02da94c26f7, type: 3}
+--- !u!1 &7611232878893233476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7611232878971862668, guid: c0607c91e2f843040adff02da94c26f7, type: 3}
+  m_PrefabInstance: {fileID: 7611232878893233475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7991011516072615925
 PrefabInstance:
   m_ObjectHideFlags: 0
