@@ -31,4 +31,12 @@ public class LoseCondition_PanelView : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void StopTime()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeTime()
+    {
+        Time.timeScale = 1;
+    }
 }
