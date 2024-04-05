@@ -939,7 +939,7 @@ MonoBehaviour:
   - {fileID: 1937131624}
   winPanel: {fileID: 824989308}
   losePanel: {fileID: 268033562}
-  transition: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
+  transition: {fileID: 11400000, guid: 650bacded1e197242a6f22c3cccfa854, type: 2}
 --- !u!114 &16239740
 MonoBehaviour:
   m_ObjectHideFlags: 0
