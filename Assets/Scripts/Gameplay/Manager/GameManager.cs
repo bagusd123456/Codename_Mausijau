@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
     [Button()]
     public void TriggerLoseCondition()
     {
-        if (gameState == Condition.EnemyWin) return;
+        //if (gameState == Condition.EnemyWin) return;
 
         gameState = Condition.EnemyWin;
         Debug.Log($"Enemy Win....");
@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour
         enemyUnit.Remove(unit);
         unit.Dead();
         enemyInsideBaseLimit--;
-        if (enemyInsideBaseLimit <= 0)
+        if (enemyInsideBaseLimit <= 0 && s_gameState == Condition.Running)
         {
             TriggerLoseCondition();
         }
